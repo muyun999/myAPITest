@@ -1,0 +1,4 @@
+2019-10-02 22:29:35,396 - root - INFO - 本次需要运行的脚本:['user/testTrucks.py']
+2019-10-02 22:29:35,542 - root - INFO - 未知的请求方法:get1
+2019-10-02 22:29:35,543 - root - INFO - 请求url为:https://appdrivert1.yoohoor.com/v1/trucks,请求方法为:get1,请求参数为:{'用例名称': '车辆查询1', 'plate': '', 'carrier_name': '', 'truck_type': '', 'state': '1', 'truck_attribute': '', 'role': 'got', 'status': '', 'page_index': 1.0, 'page_size': 10.0}
+2019-10-02 22:29:35,545 - root - INFO - 不发送测试报告邮件
