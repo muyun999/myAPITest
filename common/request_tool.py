@@ -58,6 +58,9 @@ class CommonHttp:
         # 密码转成hash密码
         login_pw_hash = hashlib.md5(bytes(login_pw, encoding="utf-8")).hexdigest()
         response = requests.post(url=login_url, data={"password": login_pw_hash, "username": login_username})
+        login_token = response.json()["data"]["token"]
+        if login_token:
+            print("获取token成功")
         return response.json()["data"]["token"]
 
     def set_token(self):

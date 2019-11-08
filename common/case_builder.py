@@ -12,23 +12,23 @@ def post_sheetname(sheetname):
     # 组装excle中每行数据进行请求
     # 参数化数据  实际运行结果与预期结果比较
 
-    # 所有数据列表
-    excle_all_datas = get_param(sheetname)
-    # 请求名称列表
-    excle_request_titlelist = get_title(sheetname, "是否跳过(Y/N)", "请求类型", "接口名称",
-                                        "Cookie(Y/N)", "期望code", "期望errmsg", "期望data数据")
     # 所有名称列表
     excle_all_titlelist = get_title(sheetname)
+
+    # 所有数据列表
+    excle_all_datas = get_param(sheetname)
+
     # 所有实际结果和预期结果的列表
     datas_list = []
+
     for excle_one_data in excle_all_datas:
         all_params = dict(zip(excle_all_titlelist, excle_one_data))
-        all_request_params = dict(zip(excle_request_titlelist, excle_one_data))
+        all_request_params = get_request_dict(all_params, ["是否跳过(Y/N)", "请求类型", "接口名称", "期望code", "期望errmsg", "期望data包含的数据"])
         # 判断body中有token参数的情况,有的话就更新token
-        if "token" in all_request_params:
-            all_request_params["token"] = str(localReadConfig.get_headers("token"))
+        if "token" in all_params:
+            all_params["token"] = str(localReadConfig.get_headers("token"))
         headers = {"token": str(localReadConfig.get_headers("token"))}
-        excle_all_titlelist = get_title(sheetname)
+        # excle_all_titlelist = get_title(sheetname)
         url_name = all_params.get("接口名称")
         if not url_name:
             mylog().info(f"{sheetname}中缺少接口名称")
@@ -55,8 +55,11 @@ def post_sheetname(sheetname):
                 # 如果发生错误就传个错误信息,这样可以统计到测试报告中
                 datas_list.append(f"(错误用例)未知的请求方法:{request_method}")
                 continue
+        if res:
+            mylog().info(f"返回值为:res")
         casename = all_params.get("用例名称")
         mylog().info(f"用例名称:{casename},请求url为:{url},请求方法为:{request_method},请求参数为:{all_request_params}")
+        mylog().info(f"接口返回值{res.json()}")
         result_code = str(res.json().get("code"))
         result_errmsg = str(res.json().get("errmsg"))
         # 实际结果的列表
@@ -67,6 +70,14 @@ def post_sheetname(sheetname):
     return datas_list
 
 
+def get_request_dict(mydict, delkeyslist):
+    # dict.copy()一级目录是深拷贝 二级目录是浅拷贝
+    newdict = mydict.copy()
+    for i in delkeyslist:
+        del newdict[i]
+    return newdict
+
+
 if __name__ == '__main__':
     # unittest.main(verbosity=2)
-   print(post_sheetname("getTrucks"))
+   print(post_sheetname("getFormals"))

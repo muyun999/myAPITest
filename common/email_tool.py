@@ -61,5 +61,7 @@ def email_text():
     # return 测试结果: 共3，通过2，错误1，通过率 = 66.67 %
     return ":".join(report_text[0])
 
+
 if __name__ == "__main__":
-    a = common_email()
+    # a = common_email()
+    print(email_text())

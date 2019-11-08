@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 pro_dir = Path(__file__).parents[1]
-excle_path = Path.joinpath(pro_dir, "excle_data/lineCase_old.xlsx")
+excle_path = Path.joinpath(pro_dir, "excle_data/lineCase.xlsx")
 
 
 def get_tables():

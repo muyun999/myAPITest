@@ -43,11 +43,14 @@ class RunAllTests:
             suitelist.append(all_case)
         for case in suitelist:
             suite.addTests(case)
+        # suite.addTests(suitelist)
         return suite
 
     def run(self):
-        # 先初始化ini文件中的token
-        CommonHttp.set_token()
+        # 判断是否需要验证码 是的话就不执行(因为自动识别验证码功能还未做 (*^_^*))
+        if localReadConfig.get_login("need_Verification_Code") == "N":
+            # 先初始化ini文件中的token
+            CommonHttp.set_token()
         try:
             suite = self.set_case_suite()
             mylog().info("********TEST START********")

@@ -18,8 +18,8 @@ def mylog():
     logger.setLevel(logging.INFO)
     # 用前判断  不然会造成日志重复打印的问题
     if not logger.handlers:
-        # 创建一个handler用于写入日志文件
-        file_handler = logging.FileHandler(logfile_path)
+        # 创建一个handler用于写入日志文件  指定encoding是为了防止打开日志文件时内容乱码
+        file_handler = logging.FileHandler(logfile_path, encoding="utf-8")
         # 创建一个handler用于输出到控制台
         console_handler = logging.StreamHandler()
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -34,12 +34,12 @@ def case_log(datalist):
     """用来记录用例执行情况
         datalist  列表   excle中每行元素"""
     # inspect.stack()用来获取调用栈
-    mylog().info(f"开始执行{inspect.stack()[1][3]}中{datalist[0]}的用例")
+    mylog().info(f"开始执行{inspect.stack()[1][3]}中 [{datalist[0]}] 的用例")
     expect = datalist[1:3]
     real = datalist[-2:]
     mylog().info(f"预期结果{expect},实际结果{real}")
     unittest.TestCase().assertTupleEqual(expect, real)
-    mylog().info(f"完成执行{inspect.stack()[1][3]}中{datalist[0]}的用例")
+    mylog().info(f"完成执行{inspect.stack()[1][3]}中 [{datalist[0]}] 的用例")
     mylog().info("=================================")
 
 
