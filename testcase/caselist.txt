@@ -2,4 +2,4 @@
 #user/testgetRecode
 #user/testTrucks.py
 formals/testGetFormals.py
-temps/testGetTemps.py
+#temps/testGetTemps.py

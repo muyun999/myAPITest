@@ -36,9 +36,13 @@ def case_log(datalist):
     # inspect.stack()用来获取调用栈
     mylog().info(f"开始执行{inspect.stack()[1][3]}中 [{datalist[0]}] 的用例")
     expect = datalist[1:3]
-    real = datalist[-2:]
+    real = datalist[-3:-1]
     mylog().info(f"预期结果{expect},实际结果{real}")
     unittest.TestCase().assertTupleEqual(expect, real)
+    if datalist[3]:
+        mylog().info("期望data包含的数据不为空,开始判断该预期数据:")
+        mylog().info(f"预期结果{datalist[3]},实际结果{datalist[-1]}")
+        unittest.TestCase().assertIn(datalist[3], datalist[-1])
     mylog().info(f"完成执行{inspect.stack()[1][3]}中 [{datalist[0]}] 的用例")
     mylog().info("=================================")
 
