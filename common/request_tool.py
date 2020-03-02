@@ -2,6 +2,8 @@ import requests
 import hashlib
 from common import read_config
 from pathlib import Path
+from common.log_trace import mylog
+
 readconfig = read_config.ReadConfig()
 
 
@@ -60,8 +62,10 @@ class CommonHttp:
         response = requests.post(url=login_url, data={"password": login_pw_hash, "username": login_username})
         login_token = response.json()["data"]["token"]
         if login_token:
-            print("获取token成功")
-        return response.json()["data"]["token"]
+            mylog().info("获取token成功")
+            return response.json()["data"]["token"]
+        else:
+            mylog().info("获取token失败")
 
     def set_token(self):
         readconfig.cf.set("HEADERS", "token", self.get_token())

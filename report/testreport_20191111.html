@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>自动化测试报告</title>
+    <meta name="generator" content="HTMLTestReportCN 0.8.3"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 100%; }
+table       { font-size: 100%; }
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">自动化测试报告</h1>
+<p class='attribute'><strong>测试人员 : </strong> QA</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-11-11 15:32:00</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:00.007974</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 2，失败 2，通过率= 0.00%</p>
+
+<p class='description'></p>
+</div>
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(4)'>概要{ 0.00% }</a>
+<a class="btn btn-success" href='javascript:showCase(0)'>通过{ 0 }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 2 }</a>
+<a class="btn btn-warning" href='javascript:showCase(2)'>错误{ 0 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 2 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center active" style="font-weight: bold;font-size: 14px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='danger'>
+    <td>formals.testGetFormals.TestTrucks</td>
+    <td class="text-center">2</td>
+    <td class="text-center">0</td>
+    <td class="text-center">2</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',2)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='ft1_1' class='none'>
+    <td class='failCase'><div class='testcase'>test_get_trucks_0__1____</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起output信息 -Findyou
+    <button id='btn_ft1_1' type="button"  class="btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_1'>失败</button>
+    <div id='div_ft1_1' class="collapse">  -->
+    <!-- 默认展开output信息 -Findyou -->
+    <button id='btn_ft1_1' type="button"  class="btn-xs" data-toggle="collapse" data-target='#div_ft1_1'>失败</button>
+    <div id='div_ft1_1' class="collapse in">
+    <pre>
+    
+ft1_1: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\untitled\venv\lib\site-packages\parameterized\parameterized.py", line 392, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "C:\Users\Administrator\Desktop\接口文档\接口自动化脚本\myTest\testcase\formals\testGetFormals.py", line 12, in test_get_trucks
+    case_log(datalist)
+  File "C:\Users\Administrator\Desktop\接口文档\接口自动化脚本\myTest\common\log_trace.py", line 41, in case_log
+    unittest.TestCase().assertTupleEqual(expect, real)
+AssertionError: Tuples differ: ('10000', '成功') != ('1000', '成功')
+
+First differing element 0:
+'10000'
+'1000'
+
+- ('10000', '成功')
+?       -
+
++ ('1000', '成功')
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_2' class='none'>
+    <td class='failCase'><div class='testcase'>test_get_trucks_1__2____</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起output信息 -Findyou
+    <button id='btn_ft1_2' type="button"  class="btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_2'>失败</button>
+    <div id='div_ft1_2' class="collapse">  -->
+    <!-- 默认展开output信息 -Findyou -->
+    <button id='btn_ft1_2' type="button"  class="btn-xs" data-toggle="collapse" data-target='#div_ft1_2'>失败</button>
+    <div id='div_ft1_2' class="collapse in">
+    <pre>
+    
+ft1_2: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\untitled\venv\lib\site-packages\parameterized\parameterized.py", line 392, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "C:\Users\Administrator\Desktop\接口文档\接口自动化脚本\myTest\testcase\formals\testGetFormals.py", line 12, in test_get_trucks
+    case_log(datalist)
+  File "C:\Users\Administrator\Desktop\接口文档\接口自动化脚本\myTest\common\log_trace.py", line 45, in case_log
+    unittest.TestCase().assertIn(datalist[3], datalist[-1])
+AssertionError: 'LDM333OT108611ATO192838A0001' not found in '{"code": 1000, "data": {"current_page": 1, "line_list": [{"alias": "云测试", "amap_mileage": 0, "amap_time": "0", "baidu_mileage": 799, "baidu_time": "217", "code": "LDMOT431001ATO210907A0001", "create_time": "2019-10-09 11:43:23", "editing": false, "effective_date": "2019-10-09 15:08:51", "end_date": "", "end_point_code": "210907A", "end_point_name": "杭州新区新区发的", "gps_mileage": 0, "gps_time": "0", "id": 77389, "modify": 0, "name": "长春长春英俊镇场地-杭州新区新区发的", "reject_reason": null, "remark": null, "start_point_code": "431001A", "start_point_name": "长春长春英俊镇场地", "status": 1, "trans_type": 1, "velocity": 220, "verify": 1}, {"alias": "bangkiki测试规划专员1", "amap_mileage": 0, "amap_time": "0", "baidu_mileage": 380, "baidu_time": "326", "code": "LDMOT108611ATO192838A0001", "create_time": "2019-09-30 20:49:43", "editing": true, "effective_date": "2019-09-30 20:49:43", "end_date": "", "end_point_code": "192838A", "end_point_name": "南京南南", "gps_mileage": 0, "gps_time": "0", "id": 77384, "modify": 0, "name": "上海中心上海中心-南京南南", "reject_reason": null, "remark": null, "start_point_code": "108611A", "start_point_name": "上海中心上海中心", "status": 1, "trans_type": 1, "velocity": 70, "verify": 1}, {"alias": "bangkiki测试规划专员1", "amap_mileage": 0, "amap_time": "0", "baidu_mileage": 380, "baidu_time": "326", "code": "LDMOT108611ATO192838A0001", "create_time": "2019-09-30 20:49:43", "editing": true, "effective_date": "2019-09-30 20:49:43", "end_date": "", "end_point_code": "192838A", "end_point_name": "南京南南", "gps_mileage": 0, "gps_time": "0", "id": 77384, "modify": 0, "name": "上海中心上海中心-南京南南", "reject_reason": null, "remark": null, "start_point_code": "108611A", "start_point_name": "上海中心上海中心", "status": 1, "trans_type": 1, "velocity": 70, "verify": 1}, {"alias": "云测试", "amap_mileage": 0, "amap_time": "0", "baidu_mileage": 222, "baidu_time": "266", "code": "LDMOT553901ATO108611A0001", "create_time": "2019-09-30 20:43:53", "editing": false, "effective_date": "2019-09-30 20:43:53", "end_date": "", "end_point_code": "108611A", "end_point_name": "上海中心上海中心", "gps_mileage": 0, "gps_time": "0", "id": 77383, "modify": 0, "name": "芜湖中心芜湖中心-上海中心上海中心", "reject_reason": null, "remark": null, "start_point_code": "553901A", "start_point_name": "芜湖中心芜湖中心", "status": 1, "trans_type": 1, "velocity": 50, "verify": 1}, {"alias": "测试云", "amap_mileage": 0, "amap_time": "0", "baidu_mileage": 777, "baidu_time": "847", "code": "LDMOT571059ATO451075A0001", "create_time": "2019-09-30 17:55:23", "editing": false, "effective_date": "2019-10-05 17:54:38", "end_date": "", "end_point_code": "451075A", "end_point_name": "北京路圆通分公司北京路圆通分公司", "gps_mileage": 0, "gps_time": "0", "id": 77382, "modify": 0, "name": "杭州临安园通速递有限公司杭州临安园通速递有限公司-北京路圆通分公司北京路圆通分公司", "reject_reason": "hdjashdjsahd ", "remark": null, "start_point_code": "571059A", "start_point_name": "杭州临安园通速递有限公司杭州临安园通速递有限公司", "status": 1, "trans_type": 1, "velocity": 55, "verify": 1}, {"alias": "云测试", "amap_mileage": 0, "amap_time": "0", "baidu_mileage": 555, "baidu_time": "302", "code": "LDMOT240001ATO210907A0001", "create_time": "2019-09-29 11:45:37", "editing": true, "effective_date": "2019-10-05 11:44:56", "end_date": "", "end_point_code": "210907A", "end_point_name": "杭州新区新区发的", "gps_mileage": 0, "gps_time": "0", "id": 77373, "modify": 0, "name": "沈阳沈阳安安-杭州新区新区发的", "reject_reason": null, "remark": null, "start_point_code": "240001A", "start_point_name": "沈阳沈阳安安", "status": 1, "trans_type": 1, "velocity": 110, "verify": 1}, {"alias": "云帆的测试-合肥到黄山", "amap_mileage": 0, "amap_time": "0", "baidu_mileage": 511, "baidu_time": "307", "code": "LDMOT210926ATO559001A0001", "create_time": "2019-09-27 14:24:24", "editing": true, "effective_date": "2019-09-27 14:24:24", "end_date": "", "end_point_code": "559001A", "end_point_name": "安徽省黄山市888888888", "gps_mileage": 0, "gps_time": "0", "id": 77361, "modify": 0, "name": "杭州心情二心情-安徽省黄山市888888888", "reject_reason": null, "remark": null, "start_point_code": "210926A", "start_point_name": "杭州心情二心情", "status": 1, "trans_type": 1, "velocity": 100, "verify": 1}, {"alias": "杭州---上海", "amap_mileage": 722, "amap_time": "177", "baidu_mileage": 333, "baidu_time": "201", "code": "LDMOT210901ATO210963A0001", "create_time": "2019-09-26 17:57:07", "editing": true, "effective_date": "2019-10-02 00:00:00", "end_date": "", "end_point_code": "210963A", "end_point_name": "上海省区上海省区", "gps_mileage": 711, "gps_time": "568", "id": 77354, "modify": 0, "name": "上海一达瓦大达瓦多-上海省区上海省区", "reject_reason": "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", "remark": "", "start_point_code": "210901A", "start_point_name": "上海一达瓦大达瓦多", "status": 1, "trans_type": 1, "velocity": 99, "verify": 1}, {"alias": "云测试", "amap_mileage": 0, "amap_time": "0", "baidu_mileage": 555, "baidu_time": "300", "code": "LDFLT210907ATO431001A0001", "create_time": "2019-09-26 13:28:45", "editing": true, "effective_date": "2019-09-26 00:00:00", "end_date": "", "end_point_code": "431001A", "end_point_name": "长春长春英俊镇场地", "gps_mileage": 0, "gps_time": "0", "id": 77347, "modify": 0, "name": "杭州新区新区发的-长春长春英俊镇场地", "reject_reason": null, "remark": null, "start_point_code": "210907A", "start_point_name": "杭州新区新区发的", "status": 1, "trans_type": 3, "velocity": 111, "verify": 1}, {"alias": "", "amap_mileage": 0, "amap_time": "0", "baidu_mileage": 1024, "baidu_time": "1024", "code": "LDMOT559001ATO053502A0001", "create_time": "2019-09-23 15:19:47", "editing": true, "effective_date": "2019-09-23 00:00:00", "end_date": "", "end_point_code": "053502A", "end_point_name": "山东省烟台市DF东大门分部软中华", "gps_mileage": 0, "gps_time": "0", "id": 77328, "modify": 0, "name": "安徽省黄山市888888888-山东省烟台市DF东大门分部软中华", "reject_reason": null, "remark": null, "start_point_code": "559001A", "start_point_name": "安徽省黄山市888888888", "status": 1, "trans_type": 1, "velocity": 60, "verify": 1}, {"alias": null, "amap_mileage": 722, "amap_time": "177", "baidu_mileage": 1800, "baidu_time": "1662", "code": "LDMOT451051ATO371901A0001", "create_time": "2019-09-05 09:59:49", "editing": true, "effective_date": "2019-09-05 00:00:00", "end_date": "", "end_point_code": "371901A", "end_point_name": "郑州转运中心", "gps_mileage": 711, "gps_time": "568", "id": 76386, "modify": 0, "name": "黑龙江省哈尔滨市平房区-郑州转运中心", "reject_reason": null, "remark": "", "start_point_code": "451051A", "start_point_name": "黑龙江省哈尔滨市平房区", "status": 1, "trans_type": 1, "velocity": 65, "verify": 1}], "total": 70008, "total_pages": 7001}, "errmsg": "成功"}'
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='total_row' class="text-center info">
+    <td>总计</td>
+    <td>2</td>
+    <td>0</td>
+    <td>2</td>
+    <td>0</td>
+    <td>通过率：0.00%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+<script language="javascript" type="text/javascript">
+output_list = Array();
+// 修改按钮颜色显示错误问题 --Findyou v0.8.2.3
+$("button[id^='btn_pt']").addClass("btn btn-success");
+$("button[id^='btn_ft']").addClass("btn btn-danger");
+$("button[id^='btn_et']").addClass("btn btn-warning");
+/*level
+增加分类并调整，增加error按钮事件 --Findyou v0.8.2.3
+0:Pass    //pt none, ft hiddenRow, et hiddenRow
+1:Failed  //pt hiddenRow, ft none, et hiddenRow
+2:Error    //pt hiddenRow, ft hiddenRow, et none
+3:All     //pt none, ft none, et none
+4:Summary //all hiddenRow
+*/
+//add Error button event --Findyou v0.8.2.3
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 0 || level == 2 || level == 4 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level == 1 || level == 2 || level == 4) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'et') {
+            if (level == 0 || level == 1 || level == 4) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+//add Error button event --Findyou v0.8.2.3
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        if (!tr) {
+            tid = 'e' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+</body>
+</html>

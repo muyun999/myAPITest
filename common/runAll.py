@@ -26,10 +26,12 @@ class RunAllTests:
     def set_case_list(self):
         caselist = []
         with open(casetxt_path, 'r') as f:
+            # 类似['#user/testContacts.py\n', 'user/testTrucks.py\n']
             all_cases_list = f.readlines()
         for case in all_cases_list:
             if not case.startswith("#"):
                 caselist.append(case.replace("\n", ""))
+        # 没啥作用 就是为了展示好看点,做了换行操作
         casename = "\n".join(caselist)
         mylog().info(f"本次需要运行的脚本:\n{casename}")
         return caselist
@@ -47,7 +49,7 @@ class RunAllTests:
         return suite
 
     def run(self):
-        # 判断是否需要验证码 是的话就不执行(因为自动识别验证码功能还未做 (*^_^*))
+        # 判断是否需要验证码 如果不需要验证码,就调登入接口获取并更新token
         if localReadConfig.get_login("need_Verification_Code") == "N":
             # 先初始化ini文件中的token
             CommonHttp.set_token()
