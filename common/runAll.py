@@ -12,6 +12,8 @@ from common.request_tool import CommonHttp
 # pro_dir = os.path.split(os.path.realpath(__file__))[0]
 # 当前文件路径的"爷爷"(上上级目录myTest)
 pro_dir = Path(__file__).parents[1]
+print(type(Path(__file__).parents))
+print(pro_dir)
 # caselist.txt 用于筛选运行的测试脚本 加#表示不用运行
 casetxt_path = Path.joinpath(pro_dir, 'testcase/caselist.txt')
 # testcase目录 用于存放测试脚本相关的文件

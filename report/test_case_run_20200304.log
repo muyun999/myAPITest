@@ -1,7 +1,7 @@
-2020-03-04 16:41:50,657 - root - INFO - 获取token成功
-2020-03-04 16:41:50,661 - root - INFO - 本次需要运行的脚本:
+2020-03-04 18:33:53,012 - root - INFO - 获取token成功
+2020-03-04 18:33:53,013 - root - INFO - 本次需要运行的脚本:
 formals/testGetFormals.py
-2020-03-04 16:41:50,844 - root - INFO - 用例名称:正式里程查询1_通过_带路段名称,请求url为:https://appdrivert1.yoohoor.com:5010/line/mileage/formals,请求方法为:get,请求参数为:{'用例名称': '正式里程查询1_通过_带路段名称', 'verify': '1', 'status': '1', 'name': '上海中心上海中心-南京南南', 'code': '', 'time': '2019-11', 'token': 'fffd5c5e-5df3-11ea-86f2-00163e050a03', 'page_index': '1', 'page_size': '10'}
-2020-03-04 16:41:50,894 - root - INFO - ********TEST START********
-2020-03-04 16:41:50,896 - root - INFO - ********TEST END********
-2020-03-04 16:41:50,896 - root - INFO - 邮件开关为off,不发送测试报告邮件
+2020-03-04 18:33:53,162 - root - INFO - 用例名称:正式里程查询1_通过_带路段名称,请求url为:https://appdrivert1.yoohoor.com:5010/line/mileage/formals,请求方法为:get,请求参数为:{'用例名称': '正式里程查询1_通过_带路段名称', 'verify': '1', 'status': '1', 'name': '上海中心上海中心-南京南南', 'code': '', 'time': '2019-11', 'token': 'a6cfa06e-5e03-11ea-86f3-00163e050a03', 'page_index': '1', 'page_size': '10'}
+2020-03-04 18:33:53,190 - root - INFO - ********TEST START********
+2020-03-04 18:33:53,192 - root - INFO - ********TEST END********
+2020-03-04 18:33:53,192 - root - INFO - 邮件开关为off,不发送测试报告邮件
