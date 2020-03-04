@@ -12,8 +12,6 @@ from common.request_tool import CommonHttp
 # pro_dir = os.path.split(os.path.realpath(__file__))[0]
 # 当前文件路径的"爷爷"(上上级目录myTest)
 pro_dir = Path(__file__).parents[1]
-print(type(Path(__file__).parents))
-print(pro_dir)
 # caselist.txt 用于筛选运行的测试脚本 加#表示不用运行
 casetxt_path = Path.joinpath(pro_dir, 'testcase/caselist.txt')
 # testcase目录 用于存放测试脚本相关的文件
@@ -82,8 +80,14 @@ class RunAllTests:
         # 判断邮件发送开关
             on_off = localReadConfig.get_email("on_off")
             if on_off == "on":
-                mylog().info("测试报告邮件已发送")
-                email_tool.common_email()
+                try:
+                    email_tool.common_email()
+                except Exception as ex:
+                    mylog().error(str(ex))
+                finally:
+                    mylog().info("测试报告邮件已发送")
+
+
             elif on_off == 'off':
                 mylog().info("邮件开关为off,不发送测试报告邮件")
             else:
