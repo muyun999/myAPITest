@@ -7,6 +7,15 @@ from common.read_config import ReadConfig
 from common.log_trace import mylog
 from common.request_tool import CommonHttp
 
+import os
+import sys
+rootpath = str(r"C:\Users\Administrator\.jenkins\workspace\自动化接口项目")
+syspath = sys.path
+sys.path = []
+sys.path.append(rootpath)
+sys.path.extend([rootpath+i for i in os.listdir(rootpath) if i[0] != "."])
+sys.path.extend(syspath)
+
 
 # pro_dir = os.path.split(os.path.realpath(__file__))[0]  os的方法太麻烦 弃用
 # 当前文件路径的"爷爷"(上上级目录myTest)
