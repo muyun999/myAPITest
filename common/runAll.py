@@ -64,7 +64,7 @@ class RunAllTests:
                     runner = HTMLTestRunnerCN.HTMLTestReportCN(
                         stream=fp,
                         # description='所有测试情况',
-                        # tester="muyun"  不写默认QA
+                        # tester="muyun"   不写默认QA
                         title="自动化测试报告")
                 elif report_form == "EN":
                     runner = HTMLTestRunnerEN.HTMLTestReportEN(stream=fp, title="自动化测试报告")
@@ -85,7 +85,6 @@ class RunAllTests:
                 mylog().info("邮件开关为off,不发送测试报告邮件")
             else:
                 mylog().info("请检查邮件开关配置")
-
 
 
 if __name__ == "__main__":
