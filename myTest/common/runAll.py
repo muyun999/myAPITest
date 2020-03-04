@@ -1,11 +1,11 @@
 import unittest
 from pathlib import Path
-from common import HTMLTestRunner_old, HTMLTestRunnerCN, HTMLTestRunnerEN
+from myTest.common import HTMLTestRunner_old, HTMLTestRunnerCN, HTMLTestRunnerEN
 from datetime import datetime
-from common import email_tool
-from common.read_config import ReadConfig
-from common.log_trace import mylog
-from common.request_tool import CommonHttp
+from myTest.common import email_tool
+from myTest.common.read_config import ReadConfig
+from myTest.common.log_trace import mylog
+from myTest.common.request_tool import CommonHttp
 
 
 # pro_dir = os.path.split(os.path.realpath(__file__))[0]  os的方法太麻烦 弃用
