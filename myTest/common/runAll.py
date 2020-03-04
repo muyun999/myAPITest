@@ -87,5 +87,6 @@ class RunAllTests:
                 mylog().info("请检查邮件开关配置")
 
 
+
 if __name__ == "__main__":
     RunAllTests().run()
