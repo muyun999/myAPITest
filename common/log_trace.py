@@ -38,13 +38,21 @@ def case_log(datalist):
     expect = datalist[1:3]
     real = datalist[-3:-1]
     mylog().info(f"预期结果{expect},实际结果{real}")
-    unittest.TestCase().assertTupleEqual(expect, real)
-    if datalist[3]:
-        mylog().info("期望data包含的数据不为空,开始判断该预期数据:")
-        mylog().info(f"预期结果{datalist[3]},实际结果{datalist[-1]}")
-        unittest.TestCase().assertIn(datalist[3], datalist[-1])
+    try:
+        unittest.TestCase().assertTupleEqual(expect, real)
+        if datalist[3]:
+            mylog().info("期望data包含的数据不为空,开始判断该预期数据:")
+            mylog().info(f"预期结果{datalist[3]},实际结果{datalist[-1]}")
+            unittest.TestCase().assertIn(datalist[3], datalist[-1])
+    except AssertionError as ex:
+            mylog().error("===========================用例失败,断言判断错误===========================")
+            mylog().error(str(ex))
+            # 因为做了异常处理,需要重新抛出异常,否则失败的用例会被当作成功
+            raise AssertionError("断言失败")
+    else:
+        mylog().info("===========================用例断言成功===========================")
     mylog().info(f"完成执行{inspect.stack()[1][3]}中 [{datalist[0]}] 的用例")
-    mylog().info("=================================")
+    mylog().info("==================================================================")
 
 
 if __name__ == "__main__":

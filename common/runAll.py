@@ -1,5 +1,4 @@
 import unittest
-import os
 from pathlib import Path
 from common import HTMLTestRunner_old, HTMLTestRunnerCN, HTMLTestRunnerEN
 from datetime import datetime
@@ -65,13 +64,13 @@ class RunAllTests:
                     runner = HTMLTestRunnerCN.HTMLTestReportCN(
                         stream=fp,
                         # description='所有测试情况',
-                        # tester="muyun"   不写默认QA
+                        tester="muyun",
                         title="自动化测试报告")
                 elif report_form == "EN":
                     runner = HTMLTestRunnerEN.HTMLTestReportEN(stream=fp, title="自动化测试报告")
                 else:
                     # 老版本
-                    runner = HTMLTestRunner_old.HTMLTestReport(stream=fp, title="{Test Report}")
+                    runner = HTMLTestRunner_old.HTMLTestRunner(stream=fp, title="自动化测试报告")
                 runner.run(suite)
         except Exception as ex:
             mylog().error(str(ex))

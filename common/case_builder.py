@@ -29,15 +29,15 @@ def post_sheetname(sheetname):
         all_request_params = get_request_dict(all_params, ["是否跳过(Y/N)", "请求类型", "接口名称", "期望code", "期望errmsg", "期望data包含的数据"])
         headers = {"token": str(localReadConfig.get_headers("token"))}
         # excle_all_titlelist = get_title(sheetname)
-        url_name = all_params.get("接口名称")
-        if not url_name:
-            mylog().info(f"{sheetname}中缺少接口名称")
+        request_name = all_params.get("接口名称")
+        if not request_name:
+            mylog().error(f"{sheetname}中缺少接口名称")
             continue
         else:
-            url = CommonHttp.set_url(url_name)
+            url = CommonHttp.set_url(request_name)
         request_method = all_params.get("请求类型")
         if not request_method:
-            mylog().info(f"{sheetname}中缺少请求方法")
+            mylog().error(f"{sheetname}中缺少请求方法")
             # 如果发生错误就传个错误信息,这样可以统计到测试报告中
             datas_list.append(f"(错误用例){sheetname}中缺少请求方法")
             continue
@@ -51,7 +51,7 @@ def post_sheetname(sheetname):
             elif request_method == "delete":
                 res = requests.delete(url=url,  headers=headers, data=all_request_params)
             else:
-                mylog().info(f"未知的请求方法:{request_method}")
+                mylog().error(f"未知的请求方法:{request_method}")
                 # 如果发生错误就传个错误信息,这样可以统计到测试报告中
                 datas_list.append(f"(错误用例)未知的请求方法:{request_method}")
                 continue

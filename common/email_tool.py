@@ -53,7 +53,6 @@ def common_email():
 
 def email_text():
     # 用于邮件正文显示测试概要结果
-
     # 兼容中文测试报告和英文报告
     textre = re.compile(r"attribute'><strong>(测试结果|Status) : </strong>(.+%)")
     with open(report_path, "rt", encoding="utf-8") as f:
