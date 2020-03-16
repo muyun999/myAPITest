@@ -6,9 +6,10 @@ from common import email_tool
 from common.read_config import ReadConfig
 from common.log_trace import mylog
 from common.request_tool import CommonHttp
+from common.case_builder import case_builder
 
 
-# pro_dir = os.path.split(os.path.realpath(__file__))[0]
+# pro_dir = os.path.split(os.path.realpath(__file__))[0]   略复杂,弃用
 # 当前文件路径的"爷爷"(上上级目录myTest)
 pro_dir = Path(__file__).parents[1]
 # caselist.txt 用于筛选运行的测试脚本 加#表示不用运行
@@ -26,7 +27,7 @@ class RunAllTests:
     def set_case_list(self):
         caselist = []
         with open(casetxt_path, 'r') as f:
-            # 类似['#user/testContacts.py\n', 'user/testTrucks.py\n']
+            # 类似['#testContacts.py\n', 'testTrucks.py\n']
             all_cases_list = f.readlines()
         for case in all_cases_list:
             if not case.startswith("#"):
@@ -49,6 +50,8 @@ class RunAllTests:
         return suite
 
     def run(self):
+        # 自动生成测试用例
+        case_builder()
         # 判断是否需要验证码 如果不需要验证码,就调登入接口获取并更新token
         if localReadConfig.get_login("need_Verification_Code") == "N":
             # 先初始化ini文件中的token

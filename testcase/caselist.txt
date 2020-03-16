@@ -1,5 +1,4 @@
-#user/testContacts.py
-#user/testgetRecode
-#user/testTrucks.py
-formals/testGetFormals.py
-#temps/testGetTemps.py
+#testDemo.py
+testgetTemps.py
+testgetFormals.py
+testcreatTemps.py

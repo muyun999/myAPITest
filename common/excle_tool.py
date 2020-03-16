@@ -97,5 +97,5 @@ def get_param(sheetname, *delcol):
 if __name__ == "__main__":
     # get_title("login")
     # get_param("getRecode", "用例名称", "是否跳过(Y/N)", "请求类型", "接口名称", "Cookie(Y/N)")
-    pass
+    print(get_tables())
 

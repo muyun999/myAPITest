@@ -22,7 +22,7 @@ def mylog():
         file_handler = logging.FileHandler(logfile_path, encoding="utf-8")
         # 创建一个handler用于输出到控制台
         console_handler = logging.StreamHandler()
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s : %(message)s')
         file_handler.setFormatter(formatter)
         console_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
@@ -34,6 +34,7 @@ def case_log(datalist):
     """用来记录用例执行情况
         datalist  列表   excle中每行元素"""
     # inspect.stack()用来获取调用栈
+    mylog().info("\n")
     mylog().info(f"开始执行{inspect.stack()[1][3]}中 [{datalist[0]}] 的用例")
     expect = datalist[1:3]
     real = datalist[-3:-1]
