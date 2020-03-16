@@ -38,7 +38,7 @@ class CommonHttp:
     def set_file(self, file):
         # 取项目绝对地址
         pro_dir = Path(__file__).parents[1]
-        filepath = pro_dir+f"\excle_data\{file}"
+        filepath = pro_dir+f"\excel_data\{file}"
         self.files = {file: open(filepath, "rb")}
 
     def get(self):

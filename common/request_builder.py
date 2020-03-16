@@ -1,5 +1,5 @@
 import requests
-from common.excle_tool import *
+from common.excel_tool import *
 from common.read_config import ReadConfig
 from common.request_tool import CommonHttp
 from common.log_trace import mylog
@@ -9,26 +9,26 @@ CommonHttp = CommonHttp()
 
 
 def post_sheetname(sheetname):
-    # 组装excle中每行数据进行请求
+    # 组装excel中每行数据进行请求
     # 参数化数据  实际运行结果与预期结果比较
 
     # 所有名称列表
-    excle_all_titlelist = get_title(sheetname)
+    excel_all_titlelist = get_title(sheetname)
 
     # 所有数据列表
-    excle_all_datas = get_param(sheetname)
+    excel_all_datas = get_param(sheetname)
 
     # 所有实际结果和预期结果的列表
     datas_list = []
 
-    for excle_one_data in excle_all_datas:
-        all_params = dict(zip(excle_all_titlelist, excle_one_data))
+    for excel_one_data in excel_all_datas:
+        all_params = dict(zip(excel_all_titlelist, excel_one_data))
         # 判断body中有token参数的情况,有的话就更新token
         if "token" in all_params:
             all_params["token"] = str(localReadConfig.get_headers("token"))
         all_request_params = get_request_dict(all_params, ["是否跳过(Y/N)", "请求类型", "接口名称", "期望code", "期望errmsg", "期望data包含的数据"])
         headers = {"token": str(localReadConfig.get_headers("token"))}
-        # excle_all_titlelist = get_title(sheetname)
+        # excel_all_titlelist = get_title(sheetname)
         request_name = all_params.get("接口名称")
         if not request_name:
             mylog().error(f"{sheetname}中缺少接口名称")
@@ -65,7 +65,7 @@ def post_sheetname(sheetname):
         # 实际结果的列表
         result_list = [result_code, result_errmsg, result]
         # 实际结果和预期结果的列表
-        data_list = [excle_one_data[0]] + excle_one_data[-3:] + result_list
+        data_list = [excel_one_data[0]] + excel_one_data[-3:] + result_list
         datas_list.append(data_list)
     return datas_list
 

@@ -1,4 +1,4 @@
-from common.excle_tool import get_tables
+from common.excel_tool import get_tables
 from pathlib import Path
 import os
 
@@ -10,7 +10,7 @@ case_list = [i for i in os.listdir(case_path) if i.startswith("test")]
 
 
 def case_builder():
-    # 根据已有的testDemo.py的内容,自动根据excle的表名生成测试用例脚本
+    # 根据已有的testDemo.py的内容,自动根据excel的表名生成测试用例脚本
     # 并把测试脚本名放入caselist.txt文件中
     for table_name in get_tables():
         newfile = "test"+table_name+".py"

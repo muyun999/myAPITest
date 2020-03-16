@@ -32,7 +32,7 @@ def mylog():
 
 def case_log(datalist):
     """用来记录用例执行情况
-        datalist  列表   excle中每行元素"""
+        datalist  列表   excel中每行元素"""
     # inspect.stack()用来获取调用栈
     mylog().info("\n")
     mylog().info(f"开始执行{inspect.stack()[1][3]}中 [{datalist[0]}] 的用例")

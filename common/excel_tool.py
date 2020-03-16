@@ -3,22 +3,22 @@ from pathlib import Path
 
 
 pro_dir = Path(__file__).parents[1]
-excle_path = Path.joinpath(pro_dir, "excle_data/lineCase.xlsx")
+excel_path = Path.joinpath(pro_dir, "excel_data/lineCase.xlsx")
 
 
 def get_tables():
-    data = xlrd.open_workbook(excle_path)
+    data = xlrd.open_workbook(excel_path)
     return data.sheet_names()
 
 
 def get_title(sheetname, *delcols):
     """
-    从excle中获取指定工作表的表头
+    从excel中获取指定工作表的表头
     :param sheetname: sheet工作表名称
     :param delcol: 不需要的参数列
     :return: 返回参数名列表
     """
-    data = xlrd.open_workbook(excle_path)
+    data = xlrd.open_workbook(excel_path)
     table = data.sheet_by_name(sheetname)
     title = table.row_values(0)
     if delcols:
@@ -29,7 +29,7 @@ def get_title(sheetname, *delcols):
 
 # 取工作表中的请求类型
 def get_method(sheetname):
-    data = xlrd.open_workbook(excle_path)
+    data = xlrd.open_workbook(excel_path)
     table = data.sheet_by_name(sheetname)
     methodnames = table.col_values(2, 1)
     return methodnames
@@ -37,7 +37,7 @@ def get_method(sheetname):
 
 # 取工作表中的接口名称
 def get_interface(sheetname):
-    data = xlrd.open_workbook(excle_path)
+    data = xlrd.open_workbook(excel_path)
     table = data.sheet_by_name(sheetname)
     interfacenames = table.col_values(3, 1)
     return interfacenames
@@ -45,14 +45,14 @@ def get_interface(sheetname):
 
 # 取工作表中的是否Cookie(默认Y)
 def get_iscookie(sheetname):
-    data = xlrd.open_workbook(excle_path)
+    data = xlrd.open_workbook(excel_path)
     table = data.sheet_by_name(sheetname)
     return table.cell_value(1, 4)
 
 
 # 取工作表中的是否跳过列(默认N)
 def get_isskip(sheetname):
-    data = xlrd.open_workbook(excle_path)
+    data = xlrd.open_workbook(excel_path)
     table = data.sheet_by_name(sheetname)
     # 标题去掉,只取值(返回列表)
     return table.col_values(1, 1)
@@ -67,7 +67,7 @@ def get_param(sheetname, *delcol):
     # 所有行的数据列表
     paramlist = []
     del_index_list = []
-    data = xlrd.open_workbook(excle_path)
+    data = xlrd.open_workbook(excel_path)
     table = data.sheet_by_name(sheetname)
     # 获取该sheet中的有效行数
     rownum = table.nrows

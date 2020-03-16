@@ -35,18 +35,18 @@ table       { font-size: 100%; }
 <div class='heading'>
 <h1 style="font-family: Microsoft YaHei">自动化测试报告</h1>
 <p class='attribute'><strong>测试人员 : </strong> muyun</p>
-<p class='attribute'><strong>开始时间 : </strong> 2020-03-16 14:14:42</p>
-<p class='attribute'><strong>合计耗时 : </strong> 0:00:00.029921</p>
-<p class='attribute'><strong>测试结果 : </strong> 共 6，通过 6，通过率= 100.00%</p>
+<p class='attribute'><strong>开始时间 : </strong> 2020-03-16 14:49:04</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:00.027926</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 6，通过 5，失败 1，通过率= 83.33%</p>
 
 <p class='description'></p>
 </div>
 
 
 <p id='show_detail_line'>
-<a class="btn btn-primary" href='javascript:showCase(4)'>概要{ 100.00% }</a>
-<a class="btn btn-success" href='javascript:showCase(0)'>通过{ 6 }</a>
-<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 0 }</a>
+<a class="btn btn-primary" href='javascript:showCase(4)'>概要{ 83.33% }</a>
+<a class="btn btn-success" href='javascript:showCase(0)'>通过{ 5 }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 1 }</a>
 <a class="btn btn-warning" href='javascript:showCase(2)'>错误{ 0 }</a>
 <a class="btn btn-info" href='javascript:showCase(3)'>所有{ 6 }</a>
 </p>
@@ -68,18 +68,57 @@ table       { font-size: 100%; }
     <td>详细</td>
 </tr>
 
-<tr class='success'>
+<tr class='danger'>
     <td>testgetTemps.TestgetTemps</td>
     <td class="text-center">1</td>
-    <td class="text-center">1</td>
     <td class="text-center">0</td>
+    <td class="text-center">1</td>
     <td class="text-center">0</td>
     <td class="text-center"><a href="javascript:showClassDetail('c1',1)" class="detail" id='c1'>详细</a></td>
 </tr>
 
-<tr id='pt1_1' class='hiddenRow'>
-    <td class='passCase'><div class='testcase'>test_getTemps_0__1__</div></td>
-    <td colspan='5' align='center'><button id='btn_pt1_1' type="button"  class="btn-xs" disabled="disabled" data-toggle="collapse" data-target='#div_pt1_1'>通过</button></td>
+<tr id='ft1_1' class='none'>
+    <td class='failCase'><div class='testcase'>test_getTemps_0__1__</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起output信息 -Findyou
+    <button id='btn_ft1_1' type="button"  class="btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_1'>失败</button>
+    <div id='div_ft1_1' class="collapse">  -->
+    <!-- 默认展开output信息 -Findyou -->
+    <button id='btn_ft1_1' type="button"  class="btn-xs" data-toggle="collapse" data-target='#div_ft1_1'>失败</button>
+    <div id='div_ft1_1' class="collapse in">
+    <pre>
+    
+ft1_1: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\接口文档\接口自动化脚本\myTest\common\log_trace.py", line 43, in case_log
+    unittest.TestCase().assertTupleEqual(expect, real)
+  File "C:\Program Files\Python37\lib\unittest\case.py", line 1056, in assertTupleEqual
+    self.assertSequenceEqual(tuple1, tuple2, msg, seq_type=tuple)
+  File "C:\Program Files\Python37\lib\unittest\case.py", line 1027, in assertSequenceEqual
+    self.fail(msg)
+AssertionError: Tuples differ: ('1000', '成功') != ('1004', '服务器错误')
+
+First differing element 0:
+'1000'
+'1004'
+
+- ('1000', '成功')
++ ('1004', '服务器错误')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\untitled\venv\lib\site-packages\parameterized\parameterized.py", line 392, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "C:\Users\Administrator\Desktop\接口文档\接口自动化脚本\myTest\testcase\testgetTemps.py", line 12, in test_getTemps
+    case_log(datalist)
+  File "C:\Users\Administrator\Desktop\接口文档\接口自动化脚本\myTest\common\log_trace.py", line 52, in case_log
+    raise AssertionError("断言失败")
+AssertionError: 断言失败
+
+
+    </pre>
+    </div>
+    </td>
 </tr>
 
 <tr class='success'>
@@ -128,10 +167,10 @@ table       { font-size: 100%; }
 <tr id='total_row' class="text-center info">
     <td>总计</td>
     <td>6</td>
-    <td>6</td>
+    <td>5</td>
+    <td>1</td>
     <td>0</td>
-    <td>0</td>
-    <td>通过率：100.00%</td>
+    <td>通过率：83.33%</td>
 </tr>
 </table>
 

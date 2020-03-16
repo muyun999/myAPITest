@@ -1,0 +1,74 @@
+2020-03-16 14:49:02,855 - root - INFO : 获取token成功
+2020-03-16 14:49:02,856 - root - INFO : 本次需要运行的脚本:
+testgetTemps.py
+testgetFormals.py
+testcreatTemps.py
+2020-03-16 14:49:03,024 - root - INFO : 用例名称:临时里程查询1_带正确始发地名称,请求url为:https://appdrivert1.yoohoor.com:5010/v1/line/mileages,请求方法为:get,请求参数为:{'用例名称': '临时里程查询1_带正确始发地名称', 'mileage_type': '2', 'status': '', 'oa_status': '', 'transport_type': '', 'origin_name': '云的海创园', 'destination_name': '云的天安门二', 'section_name': '', 'page_index': '1', 'page_size': '20', 'token': '3a77725e-6752-11ea-86f3-00163e050a03'}
+2020-03-16 14:49:03,027 - root - INFO : 接口返回值{'code': 1004, 'data': None, 'errmsg': '服务器错误'}
+2020-03-16 14:49:03,264 - root - INFO : 用例名称:正式里程查询1_带正确始发地名称,请求url为:https://appdrivert1.yoohoor.com:5010/v1/line/mileages,请求方法为:get,请求参数为:{'用例名称': '正式里程查询1_带正确始发地名称', 'mileage_type': '1', 'status': '', 'oa_status': '', 'transport_type': '', 'origin_name': '明珠', 'destination_name': '禄口国际机场', 'section_name': '', 'page_index': '1', 'page_size': '20', 'token': '3a77725e-6752-11ea-86f3-00163e050a03'}
+2020-03-16 14:49:03,265 - root - INFO : 接口返回值{'code': 1000, 'data': {'all_total': 6367, 'items': [{'baidu_mileage': 263, 'created_time': '2020-02-27 16:59:15', 'creator': '总调', 'destination_name': '禄口国际机场', 'destination_province': '江苏省', 'effective_date': '2020-02-27', 'end_time': None, 'flow_id': None, 'id': 7041, 'invalid_date': None, 'matching_timing': None, 'mileage': None, 'mileage_type': 1, 'oa_status': 1, 'origin_name': '明珠', 'origin_province': '上海市', 'section_name': '上海中心-南京中心', 'section_no': 'LDMOT210901ATO250901B', 'start_time': None, 'status': 1, 'transport_type': 'MOT', 'vehicle_type': None}], 'total': 1, 'using': 6324, 'wait_apply': 14, 'yard_change': 4}, 'errmsg': '成功'}
+2020-03-16 14:49:03,430 - root - INFO : 用例名称:正式里程查询2_错误起始地名称,请求url为:https://appdrivert1.yoohoor.com:5010/v1/line/mileages,请求方法为:get,请求参数为:{'用例名称': '正式里程查询2_错误起始地名称', 'mileage_type': '1', 'status': '', 'oa_status': '', 'transport_type': '', 'origin_name': '错误地址', 'destination_name': '', 'section_name': '', 'page_index': '1', 'page_size': '20', 'token': '3a77725e-6752-11ea-86f3-00163e050a03'}
+2020-03-16 14:49:03,431 - root - INFO : 接口返回值{'code': 1000, 'data': {'all_total': 6367, 'items': [], 'total': 0, 'using': 6324, 'wait_apply': 14, 'yard_change': 4}, 'errmsg': '成功'}
+2020-03-16 14:49:03,603 - root - INFO : 用例名称:正式里程查询3_路段名称,请求url为:https://appdrivert1.yoohoor.com:5010/v1/line/mileages,请求方法为:get,请求参数为:{'用例名称': '正式里程查询3_路段名称', 'mileage_type': '1', 'status': '', 'oa_status': '', 'transport_type': '', 'origin_name': '', 'destination_name': '', 'section_name': '上海中心-南京中心', 'page_index': '1', 'page_size': '50', 'token': '3a77725e-6752-11ea-86f3-00163e050a03'}
+2020-03-16 14:49:03,604 - root - INFO : 接口返回值{'code': 1000, 'data': {'all_total': 6367, 'items': [{'baidu_mileage': 263, 'created_time': '2020-02-27 16:59:15', 'creator': '总调', 'destination_name': '禄口国际机场', 'destination_province': '江苏省', 'effective_date': '2020-02-27', 'end_time': None, 'flow_id': None, 'id': 7041, 'invalid_date': None, 'matching_timing': None, 'mileage': None, 'mileage_type': 1, 'oa_status': 1, 'origin_name': '明珠', 'origin_province': '上海市', 'section_name': '上海中心-南京中心', 'section_no': 'LDMOT210901ATO250901B', 'start_time': None, 'status': 1, 'transport_type': 'MOT', 'vehicle_type': None}, {'baidu_mileage': 0, 'created_time': '2020-02-26 16:06:05', 'creator': '系统创建', 'destination_name': '东路', 'destination_province': '江苏省', 'effective_date': '2020-01-19', 'end_time': '', 'flow_id': '', 'id': 3820, 'invalid_date': None, 'matching_timing': 0, 'mileage': 276, 'mileage_type': 1, 'oa_status': 4, 'origin_name': '明珠', 'origin_province': '上海市', 'section_name': '上海中心-南京中心', 'section_no': 'LDMOT210901ATO250901A', 'start_time': '', 'status': 2, 'transport_type': 'MOT', 'vehicle_type': ''}, {'baidu_mileage': 0, 'created_time': '2020-02-26 15:04:06', 'creator': '系统创建', 'destination_name': '东路', 'destination_province': '江苏省', 'effective_date': '2020-01-19', 'end_time': '', 'flow_id': '', 'id': 418, 'invalid_date': None, 'matching_timing': 0, 'mileage': 276, 'mileage_type': 1, 'oa_status': 4, 'origin_name': '明珠', 'origin_province': '上海市', 'section_name': '上海中心-南京中心', 'section_no': 'LDMOT210901ATO250901A', 'start_time': '', 'status': 2, 'transport_type': 'MOT', 'vehicle_type': ''}], 'total': 3, 'using': 6324, 'wait_apply': 14, 'yard_change': 4}, 'errmsg': '成功'}
+2020-03-16 14:49:03,917 - root - INFO : 用例名称:临时里程创建_9.6米,请求url为:https://appdrivert1.yoohoor.com:5010/v1/line/mileage/temp,请求方法为:post,请求参数为:{'用例名称': '临时里程创建_9.6米', 'destination_addr': '浙江省杭州市江干区G92(沪昆高速)', 'destination_code': '571111F', 'destination_name': '杭州下沙金沙湖', 'destination_province': '浙江省', 'effective_date': '2020-03-16', 'end_time': '05:00', 'invalid_date': '2020-03-21', 'matching_timing': '1', 'mileage': '111', 'origin_addr': '浙江省绍兴市越城区斗门街道康宁路与中兴大道交叉口袍江工业区', 'origin_code': '575015A', 'origin_name': '浙江绍兴市一部', 'origin_province': '浙江省', 'start_time': '00:00', 'token': '3a77725e-6752-11ea-86f3-00163e050a03', 'vehicle_type': '1'}
+2020-03-16 14:49:03,918 - root - INFO : 接口返回值{'code': 1000, 'data': None, 'errmsg': '成功'}
+2020-03-16 14:49:04,206 - root - INFO : 用例名称:临时里程创建_全部车型,请求url为:https://appdrivert1.yoohoor.com:5010/v1/line/mileage/temp,请求方法为:post,请求参数为:{'用例名称': '临时里程创建_全部车型', 'destination_addr': '浙江省杭州市江干区G92(沪昆高速)', 'destination_code': '571111F', 'destination_name': '杭州下沙金沙湖', 'destination_province': '浙江省', 'effective_date': '2020-03-16', 'end_time': '05:00', 'invalid_date': '2020-03-21', 'matching_timing': '2', 'mileage': '555', 'origin_addr': '浙江省绍兴市越城区斗门街道康宁路与中兴大道交叉口袍江工业区', 'origin_code': '575015A', 'origin_name': '浙江绍兴市一部', 'origin_province': '浙江省', 'start_time': '00:00', 'token': '3a77725e-6752-11ea-86f3-00163e050a03', 'vehicle_type': '1,2,3'}
+2020-03-16 14:49:04,207 - root - INFO : 接口返回值{'code': 1000, 'data': None, 'errmsg': '成功'}
+2020-03-16 14:49:04,213 - root - INFO : ********TEST START********
+2020-03-16 14:49:04,215 - root - INFO : 
+
+2020-03-16 14:49:04,218 - root - INFO : 开始执行test_getTemps中 [临时里程查询1_带正确始发地名称] 的用例
+2020-03-16 14:49:04,218 - root - INFO : 预期结果('1000', '成功'),实际结果('1004', '服务器错误')
+2020-03-16 14:49:04,219 - root - ERROR : ===========================用例失败,断言判断错误===========================
+2020-03-16 14:49:04,219 - root - ERROR : Tuples differ: ('1000', '成功') != ('1004', '服务器错误')
+
+First differing element 0:
+'1000'
+'1004'
+
+- ('1000', '成功')
++ ('1004', '服务器错误')
+2020-03-16 14:49:04,219 - root - INFO : 
+
+2020-03-16 14:49:04,221 - root - INFO : 开始执行test_getFormals中 [正式里程查询1_带正确始发地名称] 的用例
+2020-03-16 14:49:04,221 - root - INFO : 预期结果('1000', '成功'),实际结果('1000', '成功')
+2020-03-16 14:49:04,221 - root - INFO : 期望data包含的数据不为空,开始判断该预期数据:
+2020-03-16 14:49:04,221 - root - INFO : 预期结果"section_name": "上海中心-南京中心",实际结果{"code": 1000, "data": {"all_total": 6367, "items": [{"baidu_mileage": 263, "created_time": "2020-02-27 16:59:15", "creator": "总调", "destination_name": "禄口国际机场", "destination_province": "江苏省", "effective_date": "2020-02-27", "end_time": null, "flow_id": null, "id": 7041, "invalid_date": null, "matching_timing": null, "mileage": null, "mileage_type": 1, "oa_status": 1, "origin_name": "明珠", "origin_province": "上海市", "section_name": "上海中心-南京中心", "section_no": "LDMOT210901ATO250901B", "start_time": null, "status": 1, "transport_type": "MOT", "vehicle_type": null}], "total": 1, "using": 6324, "wait_apply": 14, "yard_change": 4}, "errmsg": "成功"}
+2020-03-16 14:49:04,222 - root - INFO : ===========================用例断言成功===========================
+2020-03-16 14:49:04,224 - root - INFO : 完成执行test_getFormals中 [正式里程查询1_带正确始发地名称] 的用例
+2020-03-16 14:49:04,224 - root - INFO : ==================================================================
+2020-03-16 14:49:04,224 - root - INFO : 
+
+2020-03-16 14:49:04,226 - root - INFO : 开始执行test_getFormals中 [正式里程查询2_错误起始地名称] 的用例
+2020-03-16 14:49:04,226 - root - INFO : 预期结果('1000', '成功'),实际结果('1000', '成功')
+2020-03-16 14:49:04,226 - root - INFO : 期望data包含的数据不为空,开始判断该预期数据:
+2020-03-16 14:49:04,226 - root - INFO : 预期结果"total": 0,实际结果{"code": 1000, "data": {"all_total": 6367, "items": [], "total": 0, "using": 6324, "wait_apply": 14, "yard_change": 4}, "errmsg": "成功"}
+2020-03-16 14:49:04,226 - root - INFO : ===========================用例断言成功===========================
+2020-03-16 14:49:04,229 - root - INFO : 完成执行test_getFormals中 [正式里程查询2_错误起始地名称] 的用例
+2020-03-16 14:49:04,229 - root - INFO : ==================================================================
+2020-03-16 14:49:04,229 - root - INFO : 
+
+2020-03-16 14:49:04,231 - root - INFO : 开始执行test_getFormals中 [正式里程查询3_路段名称] 的用例
+2020-03-16 14:49:04,231 - root - INFO : 预期结果('1000', '成功'),实际结果('1000', '成功')
+2020-03-16 14:49:04,231 - root - INFO : 期望data包含的数据不为空,开始判断该预期数据:
+2020-03-16 14:49:04,231 - root - INFO : 预期结果LDMOT210901ATO250901B,实际结果{"code": 1000, "data": {"all_total": 6367, "items": [{"baidu_mileage": 263, "created_time": "2020-02-27 16:59:15", "creator": "总调", "destination_name": "禄口国际机场", "destination_province": "江苏省", "effective_date": "2020-02-27", "end_time": null, "flow_id": null, "id": 7041, "invalid_date": null, "matching_timing": null, "mileage": null, "mileage_type": 1, "oa_status": 1, "origin_name": "明珠", "origin_province": "上海市", "section_name": "上海中心-南京中心", "section_no": "LDMOT210901ATO250901B", "start_time": null, "status": 1, "transport_type": "MOT", "vehicle_type": null}, {"baidu_mileage": 0, "created_time": "2020-02-26 16:06:05", "creator": "系统创建", "destination_name": "东路", "destination_province": "江苏省", "effective_date": "2020-01-19", "end_time": "", "flow_id": "", "id": 3820, "invalid_date": null, "matching_timing": 0, "mileage": 276, "mileage_type": 1, "oa_status": 4, "origin_name": "明珠", "origin_province": "上海市", "section_name": "上海中心-南京中心", "section_no": "LDMOT210901ATO250901A", "start_time": "", "status": 2, "transport_type": "MOT", "vehicle_type": ""}, {"baidu_mileage": 0, "created_time": "2020-02-26 15:04:06", "creator": "系统创建", "destination_name": "东路", "destination_province": "江苏省", "effective_date": "2020-01-19", "end_time": "", "flow_id": "", "id": 418, "invalid_date": null, "matching_timing": 0, "mileage": 276, "mileage_type": 1, "oa_status": 4, "origin_name": "明珠", "origin_province": "上海市", "section_name": "上海中心-南京中心", "section_no": "LDMOT210901ATO250901A", "start_time": "", "status": 2, "transport_type": "MOT", "vehicle_type": ""}], "total": 3, "using": 6324, "wait_apply": 14, "yard_change": 4}, "errmsg": "成功"}
+2020-03-16 14:49:04,231 - root - INFO : ===========================用例断言成功===========================
+2020-03-16 14:49:04,233 - root - INFO : 完成执行test_getFormals中 [正式里程查询3_路段名称] 的用例
+2020-03-16 14:49:04,234 - root - INFO : ==================================================================
+2020-03-16 14:49:04,234 - root - INFO : 
+
+2020-03-16 14:49:04,236 - root - INFO : 开始执行test_creatTemps中 [临时里程创建_9.6米] 的用例
+2020-03-16 14:49:04,236 - root - INFO : 预期结果('1000', '成功'),实际结果('1000', '成功')
+2020-03-16 14:49:04,236 - root - INFO : ===========================用例断言成功===========================
+2020-03-16 14:49:04,238 - root - INFO : 完成执行test_creatTemps中 [临时里程创建_9.6米] 的用例
+2020-03-16 14:49:04,238 - root - INFO : ==================================================================
+2020-03-16 14:49:04,238 - root - INFO : 
+
+2020-03-16 14:49:04,240 - root - INFO : 开始执行test_creatTemps中 [临时里程创建_全部车型] 的用例
+2020-03-16 14:49:04,240 - root - INFO : 预期结果('1000', '成功'),实际结果('1000', '成功')
+2020-03-16 14:49:04,240 - root - INFO : ===========================用例断言成功===========================
+2020-03-16 14:49:04,242 - root - INFO : 完成执行test_creatTemps中 [临时里程创建_全部车型] 的用例
+2020-03-16 14:49:04,243 - root - INFO : ==================================================================
+2020-03-16 14:49:04,243 - root - INFO : ********TEST END********
+2020-03-16 14:49:04,243 - root - INFO : 邮件开关为off,不发送测试报告邮件
