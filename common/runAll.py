@@ -89,7 +89,6 @@ class RunAllTests:
                 finally:
                     mylog().info("测试报告邮件已发送")
 
-
             elif on_off == 'off':
                 mylog().info("邮件开关为off,不发送测试报告邮件")
             else:

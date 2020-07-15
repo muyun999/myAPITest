@@ -56,6 +56,7 @@ def email_text():
     # 兼容中文测试报告和英文报告
     textre = re.compile(r"attribute'><strong>(测试结果|Status) : </strong>(.+%)")
     with open(report_path, "rt", encoding="utf-8") as f:
+        # report_text [('测试结果', ' 共 6，通过 5，失败 1，通过率= 83.33%')]
         report_text = textre.findall(f.read())
     # return 测试结果: 共3，通过2，错误1，通过率 = 66.67 %
     return ":".join(report_text[0])
