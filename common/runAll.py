@@ -9,7 +9,7 @@ from common.request_tool import CommonHttp
 from common.case_builder import case_builder
 
 
-# pro_dir = os.path.split(os.path.realpath(__file__))[0]   略复杂,弃用了
+# pro_dir = os.path.split(os.path.realpath(__file__))[0]   略复杂,弃用这个方法
 # 当前文件路径的"爷爷"(上上级目录myTest)
 pro_dir = Path(__file__).parents[1]
 # caselist.txt 用于筛选运行的测试脚本 加#表示不用运行
