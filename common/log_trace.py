@@ -1,7 +1,6 @@
 import logging
 from datetime import datetime
 from pathlib import Path
-import unittest
 import inspect
 import os
 pro_dir = Path(__file__).parents[1]
@@ -54,6 +53,8 @@ def case_log(datalist):
         mylog().info("===========================用例断言成功===========================")
     mylog().info(f"完成执行{inspect.stack()[1][3]}中 [{datalist[0]}] 的用例")
     mylog().info("==================================================================")
+
+
 
 
 if __name__ == "__main__":

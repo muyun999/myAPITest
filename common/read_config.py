@@ -21,9 +21,6 @@ class ReadConfig:
     def get_http(self, name):
         return self.cf.get('HTTP', name)
 
-    def get_db(self, name):
-        return self.cf.get('DATABASE', name)
-
     def get_email(self, name):
         return self.cf.get('EMAIL', name)
 
@@ -36,11 +33,18 @@ class ReadConfig:
     def get_login(self, name):
         return self.cf.get('LOGIN', name)
 
+    def get_redis(self, name):
+        return self.cf.get('REDIS', name)
+
+    def get_db(self, name):
+        return self.cf.get('MYSQL', name)
+
+    def get_inidata(self, title, name):
+        return self.cf.get(title, name)
 
 
 if __name__ == '__main__':
     # a = ReadConfig().get_config('HTTP', 'port')
     print(Path(__file__).parents)
-    print(config_path)
 
 

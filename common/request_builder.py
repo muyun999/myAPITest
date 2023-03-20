@@ -1,4 +1,6 @@
 import requests
+import re
+from common import global_data as gbl
 from common.excel_tool import *
 from common.read_config import ReadConfig
 from common.request_tool import CommonHttp
@@ -8,76 +10,59 @@ localReadConfig = ReadConfig()
 CommonHttp = CommonHttp()
 
 
-def post_sheetname(sheetname):
-    # 组装excel中每行数据进行请求
-    # 参数化数据  实际运行结果与预期结果比较
-
-    # 所有名称列表
-    excel_all_titlelist = get_title(sheetname)
-
+# excel中所有的数据组成的字典列表
+def get_all_case_datas(sheetname):
+    excel_titlelist = get_title(sheetname)
     # 所有数据列表
     excel_all_datas = get_param(sheetname)
-
-    # 所有实际结果和预期结果的列表
-    datas_list = []
-
+    # 所有case组成的列表
+    all_case_datas = []
     for excel_one_data in excel_all_datas:
-        all_params = dict(zip(excel_all_titlelist, excel_one_data))
-        # 判断body中有token参数的情况,有的话就更新token
-        if "token" in all_params:
-            all_params["token"] = str(localReadConfig.get_headers("token"))
-        all_request_params = get_request_dict(all_params, ["是否跳过(Y/N)", "请求类型", "接口名称", "期望code", "期望errmsg", "期望data包含的数据"])
-        headers = {"token": str(localReadConfig.get_headers("token"))}
-        # excel_all_titlelist = get_title(sheetname)
-        request_name = all_params.get("接口名称")
-        if not request_name:
-            mylog().error(f"{sheetname}中缺少接口名称")
+        data_dict = dict(zip(excel_titlelist, excel_one_data))
+        # 去掉跳过标记为Y的数据
+        if data_dict.get("是否跳过(Y/N)").strip().upper() == 'Y':
             continue
-        else:
-            url = CommonHttp.set_url(request_name)
-        request_method = all_params.get("请求类型")
-        if not request_method:
-            mylog().error(f"{sheetname}中缺少请求方法")
-            # 如果发生错误就传个错误信息,这样可以统计到测试报告中
-            datas_list.append(f"(错误用例){sheetname}中缺少请求方法")
-            continue
-        else:
-            if request_method == "get":
-                res = requests.get(url=url, headers=headers, params=all_request_params)
-            elif request_method == "post":
-                res = requests.post(url=url,  headers=headers, data=all_request_params)
-            elif request_method == "put":
-                res = requests.put(url=url,  headers=headers, data=all_request_params)
-            elif request_method == "delete":
-                res = requests.delete(url=url,  headers=headers, data=all_request_params)
-            else:
-                mylog().error(f"未知的请求方法:{request_method}")
-                # 如果发生错误就传个错误信息,这样可以统计到测试报告中
-                datas_list.append(f"(错误用例)未知的请求方法:{request_method}")
+        for title_name in ("接口名称", "url端口号", "请求类型"):
+            if not data_dict.get(title_name):
+                mylog().error(data_dict.get("用例id")+f"中缺少{title_name}参数")
                 continue
-        casename = all_params.get("用例名称")
-        mylog().info(f"用例名称:{casename},请求url为:{url},请求方法为:{request_method},请求参数为:{all_request_params}")
-        mylog().info(f"接口返回值{res.json()}")
-        # unicode转中文
-        result = res.text.encode('utf-8').decode("unicode_escape")
-        result_code = str(res.json().get("code"))
-        result_errmsg = str(res.json().get("errmsg"))
-        # 实际结果的列表
-        result_list = [result_code, result_errmsg, result]
-        # 实际结果和预期结果的列表
-        data_list = [excel_one_data[0]] + excel_one_data[-3:] + result_list
-        datas_list.append(data_list)
-    return datas_list
+        if data_dict.get("headers"):
+            data_dict["headers"] = transform_request_data(data_dict.get("headers"))
+        if data_dict.get("request_data"):
+            data_dict["request_data"] = transform_request_data(data_dict.get("request_data"))
+        all_case_datas.append(data_dict)
+    return all_case_datas
 
 
-def get_request_dict(mydict, delkeyslist):
-    # dict.copy()一级目录是深拷贝 二级目录是浅拷贝
-    newdict = mydict.copy()
-    for i in delkeyslist:
-        del newdict[i]
-    return newdict
+# 跑单条数据
+def run_case_data(case_data):
+    if gbl.globals_vars and case_data.get("request_data"):
+        for _key, _value in gbl.globals_vars.items():
+            if str(case_data.get("request_data")).find(_key) != -1:
+                case_data["request_data"] = eval(str(case_data["request_data"]).replace(_key, _value))
+    data_port = case_data.get("url端口号")
+    api_name = case_data.get("接口名称")
+    url_port = ":" + data_port if data_port else ""
+    url = CommonHttp.set_url(url_port + api_name)
+    mylog().info(f'=================================================url:{url}')
+    request_method = case_data.get("请求类型")
+    mylog().info(f'=============================================request_method:{request_method}')
+    mylog().info(f'=============================================request_data:{case_data["request_data"]}')
+    res = ""
+    if request_method.lower() == "get":
+        res = requests.get(url=url, headers=case_data["headers"], params=case_data["request_data"]).text
+    elif request_method.lower() in ("post", "put", "delete"):
+        res = requests.request(request_method.lower(), url=url, headers=case_data["headers"],
+                               json=case_data["request_data"]).text
+    else:
+        mylog().error(f"未知的请求方法:{request_method}")
+    if case_data.get("提取表达式"):
+        expression = case_data.get("提取表达式").split("=")
+        expression_key = expression[0]
+        expression_value = expression[1]
+        gbl.globals_vars[expression_key] = re.findall(expression_value, str(res))[0]
+    assert re.search(case_data.get("expect_data"), res) is not None
 
 
 if __name__ == '__main__':
-    # unittest.main(verbosity=2)
-   print(post_sheetname("getFormals"))
+   print(get_all_case_datas("new_model"))

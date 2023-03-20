@@ -27,11 +27,5 @@ def log_execute_case(sheetname):
         return inner
     return wrapper
 
-# 使用举例
-# class TestTrucks(unittest.TestCase):
-#     @log_execute_case("getTrucks")
-#     # datalist 参数名固定(修饰器里写死了)
-#     def test_get_trucks(self, datalist):
-#         TestTrucks().assertListEqual(datalist[1:3], datalist[-2:])
 
 

@@ -1,4 +1,0 @@
-#testDemo.py
-testgetTemps.py
-testgetFormals.py
-testcreatTemps.py

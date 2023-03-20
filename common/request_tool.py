@@ -1,8 +1,8 @@
 import requests
-import hashlib
 from common import read_config
 from pathlib import Path
 from common.log_trace import mylog
+import redis
 
 readconfig = read_config.ReadConfig()
 
@@ -13,7 +13,6 @@ class CommonHttp:
         global scheme, host, port, timeout
         scheme = readconfig.get_http("scheme")
         host = readconfig.get_http("baseurl")
-        port = readconfig.get_http("port")
         timeout = readconfig.get_http("timeout")
 
         self.data = {}
@@ -53,19 +52,23 @@ class CommonHttp:
         response = requests.post(url=self.url, headers=self.headers, files=self.files, timeout=timeout)
         return response
 
+    def send_request(self, method, url, **kwargs):
+        response = requests.request(method, url, **kwargs)
+        return response
+
     def get_token(self):
-        login_url = readconfig.get_login("login_url")
-        login_username = readconfig.get_login("login_username")
-        login_pw = readconfig.get_login("login_pw")
-        # 密码转成hash密码
-        login_pw_hash = hashlib.md5(bytes(login_pw, encoding="utf-8")).hexdigest()
-        response = requests.post(url=login_url, data={"password": login_pw_hash, "username": login_username})
-        login_token = response.json()["data"]["token"]
-        if login_token:
-            mylog().info("获取token成功")
-            return response.json()["data"]["token"]
+        ''' 从redis中获取token,为了跳过验证码的登录操作 '''
+        redis_host = readconfig.get_redis("host")
+        redis_port = readconfig.get_redis("port")
+        redis_db = readconfig.get_redis("db")
+        token_key = readconfig.get_redis("token_key")
+        r = redis.from_url(url=f'redis://:@{redis_host}:{redis_port}/{redis_db}')
+        _token_key = r.keys(token_key)
+        if _token_key:
+            token = r.hget(_token_key[0], "token")
+            return token
         else:
-            mylog().info("获取token失败")
+            mylog().warn("token does not exist in redis,please login again")
 
     def set_token(self):
         readconfig.cf.set("HEADERS", "token", self.get_token())
