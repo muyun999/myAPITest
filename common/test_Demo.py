@@ -11,5 +11,5 @@ CommonHttp = CommonHttp()
 class TestDemo():
     @allure.title("{case_data[用例id]}")
     @pytest.mark.parametrize('case_data', get_all_case_datas("Demo"))
-    def test_line(self, case_data):
+    def test_Demo(self, case_data):
         run_case_data(case_data)
