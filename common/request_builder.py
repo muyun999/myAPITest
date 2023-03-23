@@ -5,6 +5,7 @@ from common.excel_tool import *
 from common.read_config import ReadConfig
 from common.request_tool import CommonHttp
 from common.log_trace import mylog
+from common.wrapper_tool import log_execute_case
 
 localReadConfig = ReadConfig()
 CommonHttp = CommonHttp()
@@ -26,6 +27,11 @@ def get_all_case_datas(sheetname):
             if not data_dict.get(title_name):
                 mylog().error(data_dict.get("用例id")+f"中缺少{title_name}参数")
                 continue
+        data_port = data_dict.get("url端口号")
+        api_name = data_dict.get("接口名称")
+        url_port = ":" + data_port if data_port else ""
+        url = CommonHttp.set_url(url_port + api_name)
+        data_dict["url"] = url
         if data_dict.get("headers"):
             data_dict["headers"] = transform_request_data(data_dict.get("headers"))
         if data_dict.get("request_data"):
@@ -35,33 +41,33 @@ def get_all_case_datas(sheetname):
 
 
 # 跑单条数据
+@log_execute_case
 def run_case_data(case_data):
-    if gbl.globals_vars and case_data.get("request_data"):
+    # 替换掉接口请求和预期值关联中的参数)
+    if gbl.globals_vars:
         for _key, _value in gbl.globals_vars.items():
-            if str(case_data.get("request_data")).find(_key) != -1:
+            if case_data.get("request_data") and str(case_data.get("request_data")).find(_key) != -1:
                 case_data["request_data"] = eval(str(case_data["request_data"]).replace(_key, _value))
-    data_port = case_data.get("url端口号")
-    api_name = case_data.get("接口名称")
-    url_port = ":" + data_port if data_port else ""
-    url = CommonHttp.set_url(url_port + api_name)
-    mylog().info(f'=================================================url:{url}')
+            if str(case_data.get("expect_data")).find(_key) != -1:
+                case_data["expect_data"] = str(case_data["expect_data"]).replace(_key, _value)
     request_method = case_data.get("请求类型")
-    mylog().info(f'=============================================request_method:{request_method}')
-    mylog().info(f'=============================================request_data:{case_data["request_data"]}')
-    res = ""
+    if request_method.lower() not in ("get", "post", "put", "delete"):
+        mylog().error(f">>>>>>>未知的请求方法:{request_method},目前仅支持get/post/put/delete")
     if request_method.lower() == "get":
-        res = requests.get(url=url, headers=case_data["headers"], params=case_data["request_data"]).text
-    elif request_method.lower() in ("post", "put", "delete"):
-        res = requests.request(request_method.lower(), url=url, headers=case_data["headers"],
-                               json=case_data["request_data"]).text
+        res = requests.get(url=case_data["url"], headers=case_data["headers"], params=case_data["request_data"]).text
     else:
-        mylog().error(f"未知的请求方法:{request_method}")
+        res = requests.request(request_method.lower(), url=case_data["url"], headers=case_data["headers"],
+                               data=case_data["request_data"]).text
+    case_data['response'] = res
     if case_data.get("提取表达式"):
         expression = case_data.get("提取表达式").split("=")
         expression_key = expression[0]
         expression_value = expression[1]
-        gbl.globals_vars[expression_key] = re.findall(expression_value, str(res))[0]
-    assert re.search(case_data.get("expect_data"), res) is not None
+        if re.findall(expression_value, str(res)):
+            gbl.globals_vars[expression_key] = re.findall(expression_value, str(res))[0]
+        else:
+            mylog().error("==============没有在返回值中找到提取值==============")
+    assert re.search(case_data.get("expect_data"), res, flags=re.S) is not None
 
 
 if __name__ == '__main__':

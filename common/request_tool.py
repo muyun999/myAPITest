@@ -3,6 +3,8 @@ from common import read_config
 from pathlib import Path
 from common.log_trace import mylog
 import redis
+import hashlib
+
 
 readconfig = read_config.ReadConfig()
 
@@ -56,7 +58,7 @@ class CommonHttp:
         response = requests.request(method, url, **kwargs)
         return response
 
-    def get_token(self):
+    def get_token_redis(self):
         ''' 从redis中获取token,为了跳过验证码的登录操作 '''
         redis_host = readconfig.get_redis("host")
         redis_port = readconfig.get_redis("port")
@@ -71,11 +73,25 @@ class CommonHttp:
             mylog().warn("token does not exist in redis,please login again")
 
     def set_token(self):
-        readconfig.cf.set("HEADERS", "token", self.get_token())
+        readconfig.cf.set("HEADERS", "token", self.get_token_redis())
         with open(readconfig.config_path, "w+", encoding="utf-8") as f:
             readconfig.cf.write(f)
+
+    def get_token_web(self):
+        ''' 识别web上的验证码来调用登陆接口来获取token '''
+        login_url = readconfig.get_login("login_url")
+        login_username = readconfig.get_login("login_username")
+        login_pw = readconfig.get_login("login_pw")
+        # 密码转成hash密码
+        login_pw_hash = hashlib.md5(bytes(login_pw, encoding="utf-8")).hexdigest()
+        response = requests.post(url=login_url, data={"password": login_pw_hash, "username": login_username})
+        login_token = response.json()["data"]["token"]
+        if login_token:
+            mylog().info("获取token成功")
+            return response.json()["data"]["token"]
+        else:
+            mylog().info("获取token失败")
 
 
 if __name__ == "__main__":
     a = CommonHttp()
-    print(a.set_token())

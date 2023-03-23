@@ -1,30 +1,26 @@
-from functools import wraps
 from common.log_trace import mylog
-import traceback
-from common.case_builder import post_sheetname
 
 
-# 装饰器:用例执行日志跟踪+参数化测试(有些问题,不能一个用例多个结果 需要重写)
-def log_execute_case(sheetname):
-    def wrapper(func):
-        # 被修饰的函数(wrapped) 的一些属性值赋值给 修饰器函数(wrapper)
-        @wraps(func)
-        def inner(*args, **kwargs):
-            mylog().info(f"开始执行{func.__name__}模块")
-            parame_list = post_sheetname(sheetname)
-            for parame in parame_list:
-                mylog().info(f"开始执行{func.__name__}中{parame[0]}的用例")
-                mylog().info(f"参数为:{parame[1:]}")
-                try:
-                    func(self='', datalist=parame, **kwargs)
-                except Exception as ex:
-                    mylog().info(f"执行{func.__name__}中{parame[0]}的用例出错啦")
-                    # print(ex)
-                    traceback.print_exc()
-                else:
-                    mylog().info(f"结束执行{func.__name__}中{parame[0]}的用例")
-                    mylog().info(f"结束执行{func.__name__}模块")
-        return inner
+# 装饰器:用例执行时的日志跟踪
+def log_execute_case(func):
+    def wrapper(*args, **kwargs):
+        datadict = args[0]
+        try:
+            mylog().info(f">>>>>>>开始执行用例:{datadict['用例id']}_{datadict['用例说明']}")
+            func(*args, **kwargs)
+        except AssertionError:
+            mylog().info(f">>>>>>>url为:{datadict['url']}")
+            mylog().info(f">>>>>>>请求参数为:{datadict['request_data']}")
+            mylog().info(f">>>>>>>请求返回值为:{datadict['response']}")
+            mylog().info(f">>>>>>>预期值为:{datadict['expect_data']}")
+            mylog().info(f">>>>>>>返回值为:{datadict['response']}")
+            mylog().error(f">>>>>>用例id:{datadict['用例id']}_{datadict['用例说明']}断言失败")
+            # 因为做了异常处理,需要重新抛出异常,否则失败的用例会被当作成功
+            raise AssertionError()
+        else:
+            mylog().info(f">>>>>>用例id:{datadict['用例id']}断言成功")
+        finally:
+            mylog().info(f">>>>>>结束执行用例id:{datadict['用例id']}")
     return wrapper
 
 

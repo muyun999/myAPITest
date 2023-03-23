@@ -9,8 +9,7 @@ case_list = [i for i in os.listdir(case_path) if i.startswith("test")]
 
 
 def case_builder():
-    # 根据已有的testDemo.py的内容,自动根据excel的表名生成测试用例脚本
-    # 并把测试脚本名放入caselist.txt文件中
+    # 根据已有的test_Demo.py的内容,自动根据excel的表名生成测试用例脚本
     for table_name in get_tables():
         newfile = "test_"+table_name+".py"
         if newfile in case_list:
@@ -24,5 +23,4 @@ def case_builder():
 
 
 if __name__ == '__main__':
-    print(case_list)
-    # case_builder()
+    case_builder()

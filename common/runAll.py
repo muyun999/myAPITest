@@ -1,4 +1,5 @@
 import pytest
+import os
 from pathlib import Path
 from common import email_tool
 from common.read_config import ReadConfig
@@ -22,31 +23,34 @@ CommonHttp = CommonHttp()
 
 class RunAllTests:
     def run(self):
-        # 自动生成测试用例
-        case_builder()
-        # 先初始化ini文件中的token
-        # CommonHttp.set_token()
         try:
+            # 自动生成测试用例
+            case_builder()
+            # 先初始化ini文件中的token 或者放到conftest.py中
+            # CommonHttp.set_token()
             mylog().info("********TEST START********")
             pytest.main(['-vs', '../testcase'])
+            # pytest.main(['-vs', '../testcase', '--alluredir', '../json_temp'])
+            # os.system('allure generate ../json_temp -o ../report --clean')
         except Exception as ex:
             mylog().error(str(ex))
         finally:
             mylog().info("********TEST END********")
-        # 判断邮件发送开关
-            on_off = localReadConfig.get_email("on_off")
-            if on_off == "on":
-                try:
-                    email_tool.common_email()
-                except Exception as ex:
-                    mylog().error(str(ex))
-                finally:
-                    mylog().info("测试报告邮件已发送")
 
-            elif on_off == 'off':
-                mylog().info("邮件开关为off,不发送测试报告邮件")
-            else:
-                mylog().info("请检查邮件开关配置")
+        # 判断邮件发送开关
+        on_off = localReadConfig.get_email("on_off")
+        if on_off == "on":
+            try:
+                email_tool.common_email()
+            except Exception as ex:
+                mylog().error(str(ex))
+            finally:
+                mylog().info("测试报告邮件已发送")
+
+        elif on_off == 'off':
+            mylog().info("邮件开关为off,不发送测试报告邮件")
+        else:
+            mylog().info("请检查邮件开关配置")
 
 
 if __name__ == "__main__":

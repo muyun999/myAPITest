@@ -62,7 +62,7 @@ def transform_request_data(cell_data):
         value = _data_list[1].strip()
         key_list.append(key)
         value_list.append(value)
-    data_dict = dict(zip(key_list,value_list))
+    data_dict = dict(zip(key_list, value_list))
     # 把配置文件中的token直接替换掉,防止这个token值过期
     if data_dict.get('token'):
         data_dict['token'] = str(localReadConfig.get_headers("token"))
