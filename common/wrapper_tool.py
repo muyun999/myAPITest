@@ -10,6 +10,7 @@ def log_execute_case(func):
             func(*args, **kwargs)
         except AssertionError:
             mylog().info(f">>>>>>>url为:{datadict['url']}")
+            mylog().info(f">>>>>>>请求头参数为:{datadict.get('headers')}")
             mylog().info(f">>>>>>>请求参数为:{datadict['request_data']}")
             mylog().info(f">>>>>>>请求返回值为:{datadict['response']}")
             mylog().info(f">>>>>>>预期值为:{datadict['expect_data']}")

@@ -1,4 +1,5 @@
 import xlrd
+import json
 from pathlib import Path
 from common.read_config import ReadConfig
 localReadConfig = ReadConfig()
@@ -53,20 +54,28 @@ def transform_request_data(cell_data):
     处理后变为:
     {'group_status': '1,2,3', 'trans_number': '10011001', 'cq_number': '', 'city': '杭州', 'is_bind_driver': '1'}
     '''
-    datas = cell_data.split('\n')
-    key_list, value_list = [], []
-    for data in datas:
-        # 分隔一次,防止值里带有":"
-        _data_list = data.split(":", 1)
-        key = _data_list[0].strip()
-        value = _data_list[1].strip()
-        key_list.append(key)
-        value_list.append(value)
-    data_dict = dict(zip(key_list, value_list))
-    # 把配置文件中的token直接替换掉,防止这个token值过期
-    if data_dict.get('token'):
-        data_dict['token'] = str(localReadConfig.get_headers("token"))
-    return data_dict
+    # 如果数据本身是个字典格式的,转码下返回(看具体项目编码格式)
+    # if cell_data.startswith("{") and cell_data.endswith("}"):
+    if cell_data[0] in ('[', '{') and cell_data[-1] in (']', '}'):
+        return cell_data.encode("utf-8").decode("latin1")
+    else:
+        datas = cell_data.split('\n')
+        key_list, value_list = [], []
+        for data in datas:
+            # 分隔一次,防止值里带有":"
+            _data_list = data.split(":", 1)
+            key = _data_list[0].strip()
+            value = _data_list[1].strip()
+            key_list.append(key)
+            value_list.append(value)
+        data_dict = dict(zip(key_list, value_list))
+        # 把配置文件中的token直接替换掉,防止这个token值过期
+        if data_dict.get('token'):
+            data_dict['token'] = str(localReadConfig.get_headers("token"))
+        # 对请求头中的Authorization: Bearer ca6628b2964c4a6e92e860d40abc3a也直接替换掉
+        if data_dict.get('Authorization'):
+            data_dict['Authorization'] ="Bearer "+ str(localReadConfig.get_headers("token"))
+        return data_dict
 
 
 if __name__ == "__main__":
