@@ -12,9 +12,9 @@ class RunAllTests:
             # 自动生成测试用例
             case_builder()
             mylog().info("********TEST START********")
-            # pytest.main(['-vs', '../testcase'])
-            pytest.main(['-vs', '../testcase', '--alluredir', '../json_temp'])
-            os.system('allure generate ../json_temp -o ../report --clean')
+            pytest.main(['-vs', '../testcase'])
+            # pytest.main(['-vs', '../testcase', '--alluredir', '../json_temp'])
+            # os.system('allure generate ../json_temp -o ../report --clean')
         except Exception as ex:
             mylog().error(str(ex))
         finally:
