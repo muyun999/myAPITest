@@ -1,13 +1,9 @@
 import requests
-import re
 from common import global_data as gbl
 from common.excel_tool import *
-from common.read_config import ReadConfig
 from common.request_tool import CommonHttp
-from common.log_trace import mylog
-from common.wrapper_tool import log_execute_case
+from common.log_trace import *
 
-localReadConfig = ReadConfig()
 CommonHttp = CommonHttp()
 
 
