@@ -22,6 +22,7 @@ def log_execute_case(func):
             mylog().info(f">>>>>>用例id:{datadict['用例id']}断言成功")
         finally:
             mylog().info(f">>>>>>结束执行用例id:{datadict['用例id']}")
+            mylog().info("************************************************")
     return wrapper
 
 
