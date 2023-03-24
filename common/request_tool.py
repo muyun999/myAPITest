@@ -1,16 +1,13 @@
 import requests
-from common import read_config
-from pathlib import Path
-from common.log_trace import mylog
 import redis
 import hashlib
-
+from common import read_config
+from common.log_trace import mylog
 
 readconfig = read_config.ReadConfig()
 
 
 class CommonHttp:
-
     def __init__(self):
         global scheme, host, port, timeout
         scheme = readconfig.get_http("scheme")
@@ -35,12 +32,6 @@ class CommonHttp:
 
     def set_data(self, data):
         self.data = data
-
-    def set_file(self, file):
-        # 取项目绝对地址
-        pro_dir = Path(__file__).parents[1]
-        filepath = pro_dir+f"\excel_data\{file}"
-        self.files = {file: open(filepath, "rb")}
 
     def get(self):
         response = requests.get(url=self.url, headers=self.headers, params=self.params, timeout=timeout)

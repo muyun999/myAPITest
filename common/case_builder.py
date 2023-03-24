@@ -2,6 +2,8 @@ from common.excel_tool import get_tables
 from pathlib import Path
 import os
 
+# pro_dir = os.path.split(os.path.realpath(__file__))[0]   略复杂,弃用
+# 当前文件路径的"爷爷"(上上级目录myTest)
 pro_dir = Path(__file__).parents[1]
 case_path = Path.joinpath(pro_dir, 'testcase')
 demofile_path = Path.joinpath(pro_dir, 'common/test_Demo.py')

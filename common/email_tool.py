@@ -3,20 +3,28 @@ import re
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
-from pathlib import Path
-from common import read_config
-from datetime import datetime
-from common.log_trace import mylog
-
-# 测试报告日志路径
-pro_dir = Path(__file__).parents[1]
-log_dir = Path.joinpath(pro_dir, "report")
-log_name = "test_case_run_" + str(datetime.now().strftime("%Y%m%d")) + ".log"
-logfile_path = Path.joinpath(log_dir, log_name)
+from common.log_trace import *
 
 
-def common_email():
-    rc = read_config.ReadConfig()
+
+def send_email():
+    # 判断邮件发送开关
+    on_off = rc.get_email("on_off")
+    if on_off == "on":
+        try:
+            email_content()
+        except Exception as ex:
+            mylog().error(str(ex))
+        finally:
+            mylog().info("测试报告邮件已发送")
+
+    elif on_off == 'off':
+        mylog().info("邮件开关为off,不发送测试报告邮件")
+    else:
+        mylog().info("请检查邮件开关配置")
+
+
+def email_content():
     smtpserver = rc.get_email("smtpserver")
     login_name = rc.get_email("login_name")
     login_password = rc.get_email("login_password")
@@ -30,8 +38,7 @@ def common_email():
     msg['To'] = receiver
 
     # 构造文本
-    report_result = email_text()
-    text = f"{report_result}\n运行日志请见附件"
+    text = "".join(log_analyse())+"\n运行日志请见附件"
     text_plain = MIMEText(text, 'plain', 'utf-8')
     msg.attach(text_plain)
 
@@ -50,20 +57,5 @@ def common_email():
         mylog().info("当天测试报告未生成")
 
 
-def email_text():
-    # 用于邮件正文显示测试概要结果
-    if Path(logfile_path).exists():
-        with open(logfile_path, "rt", encoding="utf-8") as f:
-            log_text = str(f.readlines())
-            fail_case = re.findall("ERROR : >>>>>>用例id:(.*?)断言失败", log_text)
-            fail_case = "\n".join(fail_case)
-            success_num = log_text.count("断言成功")
-            fail_num = log_text.count("断言失败")
-            total_num = success_num+fail_num
-            pass_rate = format(success_num / total_num, '.2%')
-            return f"测试结果: 共{total_num}，通过:{success_num}，失败:{fail_num}，通过率:{pass_rate}\n" \
-                f'其中失败用例为:\n{fail_case}'
-
-
 if __name__ == "__main__":
-    print(email_text())
+    print(email_content())

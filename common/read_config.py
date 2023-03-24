@@ -4,9 +4,6 @@ from pathlib import Path
 # 取当前文件的上上级路径
 # pro_dir = os.path.split(os.path.realpath(__file__))[0]
 pro_dir = Path(__file__).parents[1]
-# 得到配置文件的路径
-# config_path = os.path.join(pro_dir, 'config.ini')
-# config_path = Path.joinpath(pro_dir, "config/config.ini")
 
 
 class ReadConfig:

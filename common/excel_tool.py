@@ -1,5 +1,4 @@
 import xlrd
-import json
 from pathlib import Path
 from common.read_config import ReadConfig
 localReadConfig = ReadConfig()
