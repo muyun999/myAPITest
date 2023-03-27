@@ -35,8 +35,8 @@ def log_analyse():
     content = []
     if Path(logfile_path).exists():
         with open(logfile_path, "rt", encoding="utf-8") as f:
-            log_text = str(f.readlines())
-            fail_case = re.findall("ERROR : >>>>>>用例id:(.*?)断言失败", log_text)
+            log_text = f.read()
+            fail_case = re.findall("ERROR : >>>>>>>用例id:(.*?)断言失败", log_text)
             fail_case = "\n".join(fail_case)
             success_num = log_text.count("断言成功")
             fail_num = log_text.count("断言失败")
@@ -45,6 +45,7 @@ def log_analyse():
             result = f"测试结果: 共{total_num}，通过:{success_num}，失败:{fail_num}，通过率:{pass_rate}\n"
             fail_case = f"其中失败用例为:\n{fail_case}"
             content.append(result)
+            print("***************")
             if fail_num != 0:
                 content.append(fail_case)
             return content
