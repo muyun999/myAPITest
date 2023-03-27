@@ -4,6 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from common.log_trace import *
+from common.jenkins_tool import get_jenkins_allure
 
 
 
@@ -38,7 +39,8 @@ def email_content():
     msg['To'] = receiver
 
     # 构造文本
-    text = "".join(log_analyse())+"\n运行日志请见附件"
+    allure_url = get_jenkins_allure()
+    text = "".join(log_analyse())+"\nallure报告链接:"+allure_url+"\n运行日志请见附件"
     text_plain = MIMEText(text, 'plain', 'utf-8')
     msg.attach(text_plain)
 
