@@ -1,6 +1,7 @@
 import requests
 import json
 from common.log_trace import *
+from common.jenkins_tool import get_jenkins_allure
 
 readconfig = read_config.ReadConfig()
 
@@ -8,8 +9,9 @@ readconfig = read_config.ReadConfig()
 def dingding_content():
     webhook = readconfig.get_inidata("DINGDING", "webhook")
     # allure地址
-    allure_url = ""
-    msg = "".join(log_analyse())+"\nallure报告链接\n"+allure_url
+    allure_url = get_jenkins_allure()
+    msg = "".join(log_analyse())+"\nallure报告链接:"+allure_url
+    print(msg)
     headers = {'Content-Type': 'application/json; charset=utf-8'}
     data = {'msgtype': 'text', 'text': {'content': msg}, 'at': {'atMobiles': [], 'isAtAll': False}}
     #@接受钉钉消息人
@@ -37,3 +39,5 @@ def send_dingding():
         mylog().info("请检查钉钉开关配置")
 
 
+if __name__ == "__main__":
+    a = send_dingding()

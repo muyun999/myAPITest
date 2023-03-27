@@ -42,7 +42,7 @@ def log_analyse():
             fail_num = log_text.count("断言失败")
             total_num = success_num+fail_num
             pass_rate = format(success_num / total_num, '.2%')
-            result = f"测试结果: 共{total_num}，通过:{success_num}，失败:{fail_num}，通过率:{pass_rate}\n"
+            result = f"接口自动化测试结果: 共{total_num}，通过:{success_num}，失败:{fail_num}，通过率:{pass_rate}\n"
             fail_case = f"其中失败用例为:\n{fail_case}"
             content.append(result)
             print("***************")
