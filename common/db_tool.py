@@ -28,8 +28,8 @@ class DatabaseBR:
     def execsql(self):
         server = SSHTunnelForwarder(
             # 运萌测试库
-            ssh_address_or_host=(self.ssh_ip, self.ssh_port),  # B机器(跳板机)ssh主机名或IP地址
-            ssh_username=self.ssh_name,  # B机器(跳板机)ssh用户名
+            ssh_address_or_host=(self.ssh_host, self.ssh_port),  # B机器(跳板机)ssh主机名或IP地址
+            ssh_username=self.ssh_user,  # B机器(跳板机)ssh用户名
             ssh_password=self.ssh_passwd,  # B机器(跳板机)ssh密码
             remote_bind_address=(self.host, self.port))  # A机器的数据库主机名或IP地址-MySQL服务器
 
