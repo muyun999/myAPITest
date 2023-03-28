@@ -50,8 +50,8 @@ class DatabaseBR:
 
     def backing(self):
         """数据库备份"""
-        mylog().info("进入执行备份数据库的方法")
-        mylog().info("正在连接数据库……")
+        mylog().info(">>>>>>>进入执行备份数据库的方法")
+        mylog().info(">>>>>>>正在连接数据库……")
         try:
             con = pymysql.connect(user=self.user,
                                   password=self.passwd,
@@ -59,7 +59,7 @@ class DatabaseBR:
                                   port=self.port)
             cur = con.cursor()
             cur.execute(self.sql_text)
-            mylog().warn("正在执行sql……")
+            mylog().info(">>>>>>>正在执行sql……")
             dbs = cur.fetchall()
             for db in dbs:
                 db = list(db)[0]
@@ -68,35 +68,35 @@ class DatabaseBR:
                     backup_sql_path = Path.joinpath(backup_path, backup_name)
                 # 判断是否已经存在当天的备份数据,没有才备份
                     if Path(backup_sql_path).exists():
-                        mylog().info(f"{backup_sql_path}已存在,无需备份")
+                        mylog().info(f">>>>>>>{backup_sql_path}已存在,无需备份")
                         continue
                     else:
-                        mylog().info(f"{backup_sql_path}不存在，开始备份……")
+                        mylog().info(f">>>>>>>{backup_sql_path}不存在，开始备份……")
                         dumps = f"mysqldump -u {self.user} -p {self.passwd} -h {self.host} -P{self.port} -E -R {db} > {backup_name}"
                         os.system(dumps)
             cur.close()
-            mylog().warn("提交事务")
+            mylog().info(">>>>>>>提交事务")
             con.commit()
         except Exception as ex:
-            mylog().error("发生未知错误!")
+            mylog().error(">>>>>>>操作数据库备份时发生未知错误!")
             mylog().error(str(ex))
         finally:
             con.close()
-            mylog().info("关闭数据库连接")
+            mylog().info(">>>>>>>关闭数据库连接")
 
     def recovering(self):
         """数据库恢复"""
         sql_files = os.listdir(backup_path)
-        mylog().info(f"当前备份的sql文件有：{sql_files}")
+        mylog().info(f">>>>>>>当前备份的sql文件有：{sql_files}")
         for sql_file in sql_files:
             dbname = sql_file.split('.')[0]
             try:
-                mylog().info("开始恢复……")
+                mylog().info(">>>>>>>开始恢复……")
                 recover = f"mysql -u {self.user} -p {self.passwd} -h {self.host} -P{self.port} {dbname} < {sql_file}"
                 os.system(recover)
-                mylog().info(f"{dbname}数据已恢复！")
+                mylog().info(f">>>>>>>{dbname}数据已恢复！")
             except Exception as ex:
-                mylog().error(f"{dbname}恢复失败")
+                mylog().error(f">>>>>>>{dbname}恢复失败")
                 mylog().error(str(ex))
 
 
