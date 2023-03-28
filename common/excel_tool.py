@@ -27,7 +27,7 @@ def get_title(sheetname):
 def get_param(sheetname):
     """
     :param sheetname: sheet工作表名称
-    :return: 返回表格每行数据组成的列表(不含需要跳过标志的数据)
+    :return: 返回表格每行数据组成的列表
     """
     # 所有行的数据列表
     paramlist = []
