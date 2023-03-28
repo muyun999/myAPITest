@@ -19,7 +19,7 @@ def case_builder():
         else:
             os.chdir(case_path)
             with open(demofile_path, "r", encoding="utf-8") as f1, open(newfile, "w+", encoding="utf-8") as f2:
-                for line in f1:
+                for line in f1.readlines():
                     line = line.replace("Demo", table_name)
                     f2.write(line)
 
