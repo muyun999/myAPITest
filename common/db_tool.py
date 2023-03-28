@@ -50,7 +50,6 @@ class DatabaseBR:
 
     def backing(self):
         """数据库备份"""
-        con = []
         mylog().info("进入执行备份数据库的方法")
         mylog().info("正在连接数据库……")
         try:
