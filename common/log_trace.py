@@ -45,7 +45,6 @@ def log_analyse():
             result = f"接口自动化测试结果: 共{total_num}，通过:{success_num}，失败:{fail_num}，通过率:{pass_rate}\n"
             fail_case = f"其中失败用例为:\n{fail_case}"
             content.append(result)
-            print("***************")
             if fail_num != 0:
                 content.append(fail_case)
             return content

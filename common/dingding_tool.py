@@ -11,7 +11,6 @@ def dingding_content():
     # allure地址
     allure_url = get_jenkins_allure()
     msg = "".join(log_analyse())+"\nallure报告链接:"+allure_url
-    print(msg)
     headers = {'Content-Type': 'application/json; charset=utf-8'}
     data = {'msgtype': 'text', 'text': {'content': msg}, 'at': {'atMobiles': [], 'isAtAll': False}}
     #@接受钉钉消息人
