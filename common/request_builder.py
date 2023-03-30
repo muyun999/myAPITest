@@ -55,14 +55,17 @@ def run_case_data(case_data):
         res = requests.request(request_method.lower(), url=case_data["url"], headers=case_data["headers"],
                                data=case_data["request_data"]).text
     case_data['response'] = res
-    if case_data.get("提取表达式"):
-        expression = case_data.get("提取表达式").split("=")
-        expression_key = expression[0]
-        expression_value = expression[1]
-        if re.findall(expression_value, str(res)):
-            gbl.globals_vars[expression_key] = re.findall(expression_value, str(res))[0]
-        else:
-            mylog().error("==============没有在返回值中找到提取值==============")
+    res_expressions = case_data.get("提取表达式")
+    if res_expressions:
+        res_expressions_list = res_expressions.split("\n")
+        for res_expression in res_expressions_list:
+            expression_str = res_expression.split("=")
+            expression_key = expression_str[0]
+            expression_value = expression_str[1]
+            if re.findall(expression_value, str(res)):
+                gbl.globals_vars[expression_key] = re.findall(expression_value, str(res))[0]
+            else:
+                mylog().error("==============没有在返回值中找到提取值==============")
     assert re.search(case_data.get("expect_data"), res, flags=re.S) is not None
 
 
